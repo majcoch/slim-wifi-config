@@ -1,0 +1,18 @@
+﻿<Page x:Class="SlimWifiConfig.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SlimWifiConfig"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="718"
+      Title="Settings">
+
+    <Grid Background="Transparent">
+        <TextBlock Text="Settings Page"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"/>
+    </Grid>
+</Page>

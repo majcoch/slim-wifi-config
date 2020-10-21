@@ -23,6 +23,43 @@ namespace SlimWifiConfig
         public MainWindow()
         {
             InitializeComponent();
+            SmartSetup.IsSelected = true;
+        }
+
+        private void SmartSetup_Selected(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("SmartSetup_Selected");
+            MainView.Content = new SmartSetup();
+        }
+
+        private void BasicSetup_Selected(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("BasicSettings_Selected");
+            MainView.Content = new BasicSetup();
+        }
+
+        private void WiFiSetup_Selected(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("WiFiSetup_Selected");
+            MainView.Content = new WiFiSetup();
+        }
+
+        private void TCPUDPSettings_Selected(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("TCPUDPSettings_Selected");
+            MainView.Content = new TCPUDPSettings();
+        }
+
+        private void DataLogging_Selected(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("DataLogging_Selected");
+            MainView.Content = new DataLogging();
+        }
+
+        private void Settings_Selected(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Settings_Selected");
+            MainView.Content = new Settings();
         }
     }
 }

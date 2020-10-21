@@ -55,6 +55,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BasicSetup.xaml.cs">
+      <DependentUpon>BasicSetup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataLogging.xaml.cs">
+      <DependentUpon>DataLogging.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SmartSetup.xaml.cs">
+      <DependentUpon>SmartSetup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TCPUDPSettings.xaml.cs">
+      <DependentUpon>TCPUDPSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WiFiSetup.xaml.cs">
+      <DependentUpon>WiFiSetup.xaml</DependentUpon>
+    </Compile>
+    <Page Include="BasicSetup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataLogging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +93,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SmartSetup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TCPUDPSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WiFiSetup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -102,6 +144,15 @@
     <Resource Include="Assets\SmartSettings.png" />
     <Resource Include="Assets\TCPUDPSettings.png" />
     <Resource Include="Assets\WiFiSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\DataLoggerSmartSettings.png" />
+    <Resource Include="Assets\RouterSmartSettings.png" />
+    <Resource Include="Assets\ServerSmartSettings.png" />
+    <Resource Include="Assets\StationSmartSettings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
