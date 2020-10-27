@@ -3,16 +3,194 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
       xmlns:local="clr-namespace:SlimWifiConfig"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="718"
+      d:DesignHeight="700"
+      d:DesignWidth="650"
       Title="Settings">
 
     <Grid Background="Transparent">
-        <TextBlock Text="Settings Page"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   Foreground="White"
-                   FontSize="22"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <!-- Page header -->
+        <Grid Grid.Row="0"
+              Grid.Column="0">
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="20,0,0,0"
+                       Text="SETTINGS"
+                       Foreground="White"
+                       FontSize="20"
+                       FontWeight="Bold"/>
+        </Grid>
+        <!-- About this app section -->
+        <Grid Grid.Row="1"
+              Grid.Column="1">
+
+            <StackPanel Orientation="Vertical"
+                        Margin="0,0,30,0">
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           FontSize="20"
+                           Foreground="White"
+                           Text="About this app"/>
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Margin="0,5,0,0"
+                           FontSize="14"
+                           Foreground="White"
+                           Text="SlimWiFi Configurator 1.0.0"/>
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Margin="0,3,0,0"
+                           FontSize="14"
+                           Foreground="White"
+                           Text="©2020 Michał Granda"/>
+
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Margin="0,10,0,0"
+                           FontSize="14">
+                    <Hyperlink NavigateUri="https://github.com/majcoch"
+                               RequestNavigate="Hyperlink_RequestNavigate">
+                        Author's GitHub
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Margin="0,5,0,0"
+                           FontSize="14">
+                    <Hyperlink NavigateUri="https://github.com/majcoch/slim-wifi-config"
+                               RequestNavigate="Hyperlink_RequestNavigate">
+                        Projects's page
+                    </Hyperlink>
+                </TextBlock>
+
+            </StackPanel>
+        </Grid>
+
+        <!-- Serial communication section -->
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Margin="20,0,0,0">
+            <StackPanel Orientation="Vertical">
+                <!-- Section header -->
+                <TextBlock Text="Serial Communication Port"
+                           Foreground="White"
+                           FontSize="25"/>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="0,15,0,0">
+                    <TextBlock Text="Serial Port"
+                               Foreground="White"
+                               FontSize="13"/>
+                    <ComboBox HorizontalAlignment="Left"
+                              Margin="0,3,0,0"
+                              Width="110"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="0,10,0,0">
+                    <TextBlock Text="Frame format"
+                               Foreground="White"
+                               FontSize="13"/>
+                    <ComboBox HorizontalAlignment="Left"
+                              Margin="0,5,0,0"
+                              Width="110">
+                        <ComboBoxItem Content="8N1"
+                                      IsSelected="True"/>
+                        <ComboBoxItem Content="8N2"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="0,10,0,0">
+                    <TextBlock Text="Baudrate"
+                               Foreground="White"
+                               FontSize="13"/>
+                    <ComboBox HorizontalAlignment="Left"
+                              Margin="0,5,0,0"
+                              Width="110">
+                        <ComboBoxItem Content="Bootlader"/>
+                        <ComboBoxItem Content="300"/>
+                        <ComboBoxItem Content="600"/>
+                        <ComboBoxItem Content="1200"/>
+                        <ComboBoxItem Content="2400"/>
+                        <ComboBoxItem Content="4800"/>
+                        <ComboBoxItem Content="9600"/>
+                        <ComboBoxItem Content="14400"/>
+                        <ComboBoxItem Content="19200"/>
+                        <ComboBoxItem Content="38400"/>
+                        <ComboBoxItem Content="57600"/>
+                        <ComboBoxItem Content="115200" IsSelected="True"/>
+                        <ComboBoxItem Content="230400"/>
+                        <ComboBoxItem Content="460800"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <Button Width="85"
+                        Height="30"
+                        HorizontalAlignment="Left"
+                        Margin="0,10,0,0">
+                    Connect
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+        <!-- Server configuration section -->
+        <Grid Grid.Row="2"
+              Grid.Column="0"
+              Margin="20,10,0,0">
+            <StackPanel>
+                <TextBlock Text="Default Server Configuration"
+                           Foreground="White"
+                           FontSize="25"/>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="0,15,0,0">
+                    <TextBlock Text="Default AP's address"
+                               Foreground="White"
+                               FontSize="13"/>
+                    <TextBox HorizontalAlignment="Left"
+                             Margin="0,5,0,0"
+                             Width="130"
+                             Height="20"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="0,10,0,0">
+                    <TextBlock Text="Default port number"
+                               Foreground="White"
+                               FontSize="13"/>
+                    <TextBox HorizontalAlignment="Left"
+                             Margin="0,5,0,0"
+                             Width="130"
+                             Height="20"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
+                    <Button Width="85"
+                            Height="30"
+                            Content="Apply"/>
+                    <Button Width="85"
+                            Height="30"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left"
+                            Margin="15,0,0,0"
+                            Content="Restore"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

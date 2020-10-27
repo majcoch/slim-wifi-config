@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SlimWifiConfig
 {
     /// <summary>
-    /// Interaction logic for SmartSetup.xaml
+    /// Interaction logic for RemoteTerminal.xaml
     /// </summary>
-    public partial class SmartSetup : Page
+    public partial class RemoteTerminal : Page
     {
-        public SmartSetup()
+        public RemoteTerminal()
         {
             InitializeComponent();
         }

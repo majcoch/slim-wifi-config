@@ -15,51 +15,60 @@ using System.Windows.Shapes;
 
 namespace SlimWifiConfig
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            SmartSetup.IsSelected = true;
-        }
-
-        private void SmartSetup_Selected(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("SmartSetup_Selected");
-            MainView.Content = new SmartSetup();
+            BasicSetupListViewItem.IsSelected = true;
         }
 
         private void BasicSetup_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("BasicSettings_Selected");
-            MainView.Content = new BasicSetup();
+            CurrentView.Content = new BasicSetup();
+            ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
+            if (selected != null) selected.IsSelected = false;
         }
 
         private void WiFiSetup_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("WiFiSetup_Selected");
-            MainView.Content = new WiFiSetup();
+            CurrentView.Content = new WiFiSetup();
+            ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
+            if (selected != null) selected.IsSelected = false;
         }
 
         private void TCPUDPSettings_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("TCPUDPSettings_Selected");
-            MainView.Content = new TCPUDPSettings();
+            CurrentView.Content = new TCPUDPSettings();
+            ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
+            if (selected != null) selected.IsSelected = false;
         }
 
         private void DataLogging_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("DataLogging_Selected");
-            MainView.Content = new DataLogging();
+            CurrentView.Content = new DataLogging();
+            ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
+            if (selected != null) selected.IsSelected = false;
+        }
+
+        private void RemoteTerminal_Selected(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("RemoteTerminal_Selected");
+            CurrentView.Content = new RemoteTerminal();
+            ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
+            if (selected != null) selected.IsSelected = false;
         }
 
         private void Settings_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Settings_Selected");
-            MainView.Content = new Settings();
+            CurrentView.Content = new Settings();
+            ListViewItem selected = (ListViewItem)MainMenuListView.SelectedItem;
+            if (selected != null) selected.IsSelected = false;
         }
     }
 }

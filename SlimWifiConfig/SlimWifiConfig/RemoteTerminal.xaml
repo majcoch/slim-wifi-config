@@ -1,4 +1,4 @@
-﻿<Page x:Class="SlimWifiConfig.DataLogging"
+﻿<Page x:Class="SlimWifiConfig.RemoteTerminal"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,10 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="700"
       d:DesignWidth="650"
-      Title="DataLogging">
+      Title="RemoteTerminal">
 
     <Grid Background="Transparent">
-        <TextBlock Text="Data Logger Page"
+        <TextBlock Text="Remote Terminal"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Foreground="White"

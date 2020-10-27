@@ -3,41 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:local="clr-namespace:SlimWifiConfig"
         mc:Ignorable="d"
-        Title="SlimWiFi Configurator" 
-        Height="700" 
-        Width="768"
-        ResizeMode="CanMinimize"
-        WindowStyle="SingleBorderWindow"
-        WindowStartupLocation="CenterScreen" Icon="Icons/icon.png">
+        Title="SlimWiFi Configurator"
+        Icon="Icons/icon.png"
+        WindowStartupLocation="CenterScreen"
+        fw:AcrylicWindow.ExtendViewIntoTitleBar="True"
+        fw:AcrylicWindow.Enabled="True"
+        BorderThickness="0"
+        WindowStyle="None"
+        Height="700"
+        MinHeight="700"
+        Width="900"
+        MinWidth="900">
     <Window.Resources>
-        <ImageBrush x:Key="MenuToggleButton_MouseOver"
-            ImageSource="Assets/Menu.png"/>
-        <Style x:Key="MenuToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Style x:Key="ListViewItem_Style" TargetType="ListViewItem">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Border x:Name="border"
-                                BorderThickness="{TemplateBinding BorderThickness}"
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Name="border"
+                                SnapsToDevicePixels="true" 
                                 Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True"/>
+                                BorderBrush="Transparent"
+                                BorderThickness="0">
+                            <ContentPresenter/>
+                        </Border>
+
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background"
-                                        TargetName="border"
-                                        Value="{StaticResource MenuToggleButton_MouseOver}"/>
-                                <Setter Property="BorderBrush"
-                                        TargetName="border"
-                                        Value="{StaticResource MenuToggleButton_MouseOver}"/>
+                                <Setter TargetName="border" Property="Background" Value="#39cccccc"/>
                             </Trigger>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background"
-                                        TargetName="border"
-                                        Value="{StaticResource MenuToggleButton_MouseOver}"/>
-                                <Setter Property="BorderBrush"
-                                        TargetName="border"
-                                        Value="{StaticResource MenuToggleButton_MouseOver}"/>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#39cccccc"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -45,208 +44,166 @@
             </Setter>
         </Style>
     </Window.Resources>
-
-    <!-- #c3c3c3 -->
-    <Grid Background="#FF272626">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#70786C6C" Opacity="0.50"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <!-- Main page view -->
-        <Grid Margin="50,0,0,0">
-            <Frame x:Name="MainView" NavigationUIVisibility="Hidden"/>
-
+        <Grid Grid.Column="1"
+              Background="Black">
+            <Frame x:Name="CurrentView" 
+                   NavigationUIVisibility="Hidden"/>
         </Grid>
-        <!-- Left navigation panel -->
-        <Grid x:Name="NavigationPanel"
-              HorizontalAlignment="Left"
-              Width="50"
-              Background="#474747">
-            <StackPanel>
-                <!-- Menu hamburger -->
-                <Grid Height="50">
-                    <ToggleButton x:Name="MenuToggleButton"
-                                  Grid.Column="0"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Left"
-                                  Margin="10"
-                                  Width="30"
-                                  Height="30"
-                                  BorderThickness="0"
-                                  Style="{StaticResource MenuToggleButtonStyle}">
-                        <ToggleButton.Background>
-                            <ImageBrush ImageSource="Assets/Menu.png"
-                                        Stretch="None"/>
-                        </ToggleButton.Background>
-                        <ToggleButton.Triggers>
-                            <EventTrigger RoutedEvent="ToggleButton.Checked">
-                                <BeginStoryboard>
-                                    <Storyboard x:Name="ShowNavigationPanel">
-                                        <DoubleAnimation Storyboard.TargetName="NavigationPanel"
-                                                         Storyboard.TargetProperty="Width"
-                                                         BeginTime="0:0:0"
-                                                         From="50" To="150"
-                                                         Duration="0:0:0.25">
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-
-                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-                                <BeginStoryboard>
-                                    <Storyboard x:Name="HideNavigationPanel">
-                                        <DoubleAnimation Storyboard.TargetName="NavigationPanel"
-                                                         Storyboard.TargetProperty="Width"
-                                                         BeginTime="0:0:0"
-                                                         From="150" To="50"
-                                                         Duration="0:0:0.25">
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </ToggleButton.Triggers>
-                    </ToggleButton>
-                </Grid>
-                <!-- Left navigation buttons -->
-                <ListView x:Name="SideBarElements"
+        <!-- Side bar -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="29"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Title on top bar-->
+            <Grid Grid.Row="0"
+                  Background="Transparent">
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="12,0,0,0"
+                           Text="SlimWiFi Configurator"
+                           Foreground="White"
+                           FontSize="12"/>
+            </Grid>
+            <!-- Navigation menu -->
+            <Grid Grid.Row="1"
+                  Background="Transparent">
+                <!-- Main menu -->
+                <ListView x:Name="MainMenuListView"
+                          BorderThickness="0"
+                          Margin="0,20,0,0"
+                          VerticalAlignment="Top"
                           Background="Transparent"
-                          BorderBrush="Transparent"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          Margin="0,30">
-
-                    <ListViewItem x:Name="SmartSetup"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Left"
+                          ItemContainerStyle="{StaticResource ListViewItem_Style}">
+                    <ListViewItem x:Name="BasicSetupListViewItem"
+                                  Height="47"
                                   BorderThickness="0"
-                                  Height="50"
-                                  Width="150" 
-                                  Selected="SmartSetup_Selected" >
-
+                                  Selected="BasicSetup_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/SmartSettings.png"
-                                   Margin="8"
-                                   Stretch="None"/>
-                            <TextBlock Text="Smart Setup"
-                                       Grid.Row="1"
-                                       Grid.Column="0"
-                                       Margin="10,0,0,0"
+                            <Image Source="Assets/BasicSetupPageIcon.png"
+                                   Width="20"
+                                   Height="20"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,3,0,0"/>
+                            <TextBlock Text="Basic setup"
                                        Foreground="White"
-                                       Background="Transparent"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
-                                       FontSize="12"/>
+                                       FontSize="14"
+                                       Margin="10,0,0,0"/>
                         </StackPanel>
                     </ListViewItem>
-
-                    <ListViewItem x:Name="BasicSetup"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Left"
+                    <ListViewItem Height="47"
                                   BorderThickness="0"
-                                  Height="50"
-                                  Width="150" Selected="BasicSetup_Selected">
+                                  Selected="WiFiSetup_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/BasicSettings.png"
-                                   Margin="8"
-                                   Stretch="None"/>
-                            <TextBlock Text="Basic Setup"
-                                       Grid.Row="1"
-                                       Grid.Column="0"
-                                       Margin="10,0,0,0"
+                            <Image Source="Assets/WiFiSetupPageIcon.png"
+                                   Width="20"
+                                   Height="20"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,3,0,0"/>
+                            <TextBlock Text="WiFi setup"
                                        Foreground="White"
-                                       Background="Transparent"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
-                                       FontSize="12"/>
+                                       FontSize="14"
+                                       Margin="10,0,0,0"/>
                         </StackPanel>
                     </ListViewItem>
-
-                    <ListViewItem x:Name="WiFiSetup"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Left"
+                    <ListViewItem Height="47"
                                   BorderThickness="0"
-                                  Height="50"
-                                  Width="150" Selected="WiFiSetup_Selected">
+                                  Selected="TCPUDPSettings_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/WiFiSettings.png"
-                                   Margin="8"
-                                   Stretch="None"/>
-                            <TextBlock Text="WiFi Setup"
-                                       Grid.Row="1"
-                                       Grid.Column="0"
-                                       Margin="10,0,0,0"
+                            <Image Source="Assets/TCPIPPageIcon.png"
+                                   Width="20"
+                                   Height="20"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,3,0,0"/>
+                            <TextBlock Text="TCP/IP setup"
                                        Foreground="White"
-                                       Background="Transparent"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
-                                       FontSize="12"/>
+                                       FontSize="14"
+                                       Margin="10,0,0,0"/>
                         </StackPanel>
                     </ListViewItem>
-
-                    <ListViewItem x:Name="TCPUDPSettings"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Left"
+                    <ListViewItem Height="47"
                                   BorderThickness="0"
-                                  Height="50"
-                                  Width="150" Selected="TCPUDPSettings_Selected">
+                                  Selected="DataLogging_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/TCPUDPSettings.png"
-                                   Margin="8"
-                                   Stretch="None"/>
-                            <TextBlock Text="TCP/UDP"
-                                       Grid.Row="1"
-                                       Grid.Column="0"
-                                       Margin="10,0,0,0"
+                            <Image Source="Assets/DataLoggerPageIcon.png"
+                                   Width="20"
+                                   Height="20"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,3,0,0"/>
+                            <TextBlock Text="Data logger"
                                        Foreground="White"
-                                       Background="Transparent"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
-                                       FontSize="12"/>
+                                       FontSize="14"
+                                       Margin="10,0,0,0"/>
                         </StackPanel>
                     </ListViewItem>
-
-                    <ListViewItem x:Name="DataLogging"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Left"
+                    <ListViewItem Height="47"
                                   BorderThickness="0"
-                                  Height="50"
-                                  Width="150" Selected="DataLogging_Selected">
+                                  Selected="RemoteTerminal_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/DataLogger.png"
-                                   Margin="8"
-                                   Stretch="None"/>
-                            <TextBlock Text="Data Logging"
-                                       Grid.Row="1"
-                                       Grid.Column="0"
-                                       Margin="10,0,0,0"
+                            <Image Source="Assets/RemoteTerminalPageIcon.png"
+                                   Width="20"
+                                   Height="20"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,3,0,0"/>
+                            <TextBlock Text="Remote terminal"
                                        Foreground="White"
-                                       Background="Transparent"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
-                                       FontSize="12"/>
+                                       FontSize="14"
+                                       Margin="10,0,0,0"/>
                         </StackPanel>
                     </ListViewItem>
-
-                    <ListViewItem x:Name="Settings"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Left"
-                                  BorderThickness="0"
-                                  Height="50"
-                                  Width="150"
-                                  Margin="0,275,0,0" Selected="Settings_Selected">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/Settings.png"
-                                   Margin="8"
-                                   Stretch="None"/>
-                            <TextBlock Text="Settings"
-                                       Grid.Row="1"
-                                       Grid.Column="0"
-                                       Margin="10,0,0,0"
-                                       Foreground="White"
-                                       Background="Transparent"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"
-                                       FontSize="12"/>
-                        </StackPanel>
-                    </ListViewItem>
-
                 </ListView>
-            </StackPanel>
+                <!-- Settings button -->
+                <ListView x:Name="SettingsListView"
+                          BorderThickness="0"
+                          VerticalAlignment="Bottom"
+                          Background="Transparent"
+                          ItemContainerStyle="{StaticResource ListViewItem_Style}">
+                    <ListViewItem Height="47"
+                                  BorderThickness="0"
+                                  VerticalAlignment="Bottom"
+                                  Selected="Settings_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Assets/SettingsPageIcon.png"
+                                   Width="20"
+                                   Height="20"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Margin="10,3,0,0"/>
+                            <TextBlock Text="Settings"
+                                       Foreground="White"
+                                       Opacity="1"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       FontSize="14"
+                                       Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
