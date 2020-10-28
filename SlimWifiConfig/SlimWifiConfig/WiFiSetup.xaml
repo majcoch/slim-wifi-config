@@ -5,30 +5,321 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SlimWifiConfig"
       mc:Ignorable="d" 
-      d:DesignHeight="700"
+      d:DesignHeight="1850"
       d:DesignWidth="650"
       Title="WiFiSetup">
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Page header -->
+            <Grid Grid.Row="0"
+                  Grid.Column="0"
+                  Margin="20,0,0,0">
+                <TextBlock VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Text="WiFi SETUP"
+                           Foreground="White"
+                           FontSize="20"
+                           FontWeight="Bold"/>
+            </Grid>
+            <!-- Mode selection section -->
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  Margin="20,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="Module's mode selection"
+                               Foreground="White"
+                               FontSize="25"/>
+                    <TextBlock Foreground="White"
+                               FontSize="13"
+                               Text="Module mode"/>
+                    <ComboBox HorizontalAlignment="Left"
+                              Margin="0,5,0,0"
+                              Width="150">
+                        <ComboBoxItem Content="Station"/>
+                        <ComboBoxItem Content="SoftAP"/>
+                        <ComboBoxItem Content="SoftAP + Station"/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+            <!-- Station mode settings section -->
+            <Grid Grid.Row="2"
+                  Grid.Column="0"
+                  Margin="20,0,0,0"
+                  Visibility="Visible">
+                <StackPanel Orientation="Vertical"
+                            Margin="0,10,0,0">
+                    <!-- Section header -->
+                    <TextBlock Text="Station mode settings"
+                               Foreground="White"
+                               FontSize="25"/>
+                    <!-- Set up IP configuration section -->
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,0">
+                        <TextBlock Text="IP Settings"
+                                   Foreground="White"
+                                   FontSize="20"/>
+                        <!-- DHCP Enabled -->
+                        <RadioButton Content="Get IP from DHCP"
+                                     Margin="0,5,0,0"/>
+                        <StackPanel Orientation="Vertical">
 
-    <Grid Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <!-- Page header -->
-        <Grid Grid.Row="0"
-              Grid.Column="0">
-            <TextBlock VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Margin="20,0,0,0"
-                       Text="WiFi SETUP"
-                       Foreground="White"
-                       FontSize="20"
-                       FontWeight="Bold"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Station IP:"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBlock Text="N/A"
+                                       Foreground="White"
+                                       FontSize="13"
+                                       Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Gateway:"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBlock Text="N/A"
+                                       Foreground="White"
+                                       FontSize="13"
+                                       Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Netmask"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBlock Text="N/A"
+                                       Foreground="White"
+                                       FontSize="13"
+                                       Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <Button Content="Retrive"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                        </StackPanel>
+                        <!-- DHCP Disabled -->
+                        <RadioButton Content="Set static IP"
+                                     Margin="0,5,0,0"/>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical"
+                                    Margin="0,5,0,0">
+                                <TextBlock Text="Module's IP"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"
+                                    Margin="0,5,0,0">
+                                <TextBlock Text="Gateway"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"
+                                    Margin="0,5,0,0">
+                                <TextBlock Text="Net mask"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                            </StackPanel>
+                            <Button Content="Save"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!-- Connect to AP section -->
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,0">
+                        <TextBlock Text="Connect to access point"
+                                   Foreground="White"
+                                   FontSize="20"/>
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Avaliable APs"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,5,0,0">
+                            <ComboBox HorizontalAlignment="Left"
+                                      Width="150"/>
+                            <Button Margin="10,0,0,0"
+                                    Width="85"
+                                    Height="30"
+                                    Content="Scan"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Margin="0,10,0,0">
+                            <TextBlock Margin="0,10,0,0" 
+                                       Text="Network's password"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                            <PasswordBox HorizontalAlignment="Left"
+                                         Margin="0,5,0,0"
+                                         Width="150"/>
+                        </StackPanel>
+                        <CheckBox Content="Save to flash"
+                                  Foreground="White"
+                                  FontSize="13"
+                                  Margin="0,5,0,0"/>
+                        <Button Content="Connect"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                    </StackPanel>
+                    <!-- Station MAC info section -->
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,0">
+                        <TextBlock Text="Station MAC address"
+                                   Foreground="White"
+                                   FontSize="20"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="MAC:"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                            <TextBlock Margin="10,0,0,0" 
+                                       Text="N/A"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                        </StackPanel>
+                        <Button Content="Retrive"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <!-- Access Point mode settings section -->
+            <Grid Grid.Row="3"
+                  Grid.Column="0"
+                  Margin="20,0,0,0">
+                <StackPanel Orientation="Vertical"
+                            Margin="0,10,0,0">
+                    <!-- Section header -->
+                    <TextBlock Text="Access Point mode settings"
+                               Foreground="White"
+                               FontSize="25"/>
+                    <!-- Network SSD setting -->
+                    <TextBlock Text="Access point name"
+                                   Foreground="White"
+                                   FontSize="20"/>
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,0">
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Network's SSID"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <PasswordBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                        <Button Content="Apply"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                    </StackPanel>
+                    <!-- Set up IP configuration section -->
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,0">
+                        <TextBlock Text="DHCP settings"
+                                   Foreground="White"
+                                   FontSize="20"/>
+                        <!-- DHCP Enabled -->
+                        <RadioButton Content="Default DHCP settings"
+                                     Margin="0,5,0,0"/>
+                        <!-- DHCP Disabled -->
+                        <RadioButton Content="Custom DHCP"
+                                     Margin="0,5,0,0"/>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical"
+                                    Margin="0,5,0,0">
+                                <TextBlock Text="Lease time (in minutes)"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"
+                                    Margin="0,5,0,0">
+                                <TextBlock Text="Start IP"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"
+                                    Margin="0,5,0,0">
+                                <TextBlock Text="End IP"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                                <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                            </StackPanel>
+                            <Button Content="Save"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!-- List connected devices -->
+                    <StackPanel>
+                        <TextBlock Text="Connected devices"
+                                   Foreground="White"
+                                   FontSize="20"/>
+                        <ListView Width="500"
+                                  Height="200"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,10,0,5">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" Width="200"/>
+                                    <GridViewColumn Header="IP" Width="150"/>
+                                    <GridViewColumn Header="MAC" Width="150"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button Content="Update"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                    </StackPanel>
+                    <!-- Access point MAC info section -->
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,10">
+                        <TextBlock Text="Access point MAC address"
+                                   Foreground="White"
+                                   FontSize="20"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="MAC:"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                            <TextBlock Margin="10,0,0,0" 
+                                       Text="N/A"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                        </StackPanel>
+                        <Button Content="Retrive"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>

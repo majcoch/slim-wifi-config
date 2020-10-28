@@ -1,32 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SlimWifiConfig
 {
     public partial class MainWindow : Window
     {
+        private readonly Page BasicSetupPage;
+        private readonly Page WiFiSetupPage;
+        private readonly Page TCPIPSetupPage;
+        private readonly Page DataLoggerPage;
+        private readonly Page RemoteTerminalPage;
+        private readonly Page SettingsPage;
+
         public MainWindow()
         {
             InitializeComponent();
+            
+            BasicSetupPage = new BasicSetup();
+            WiFiSetupPage = new WiFiSetup();
+            TCPIPSetupPage = new TCPUDPSettings();
+            DataLoggerPage = new DataLogging();
+            RemoteTerminalPage = new RemoteTerminal();
+            SettingsPage = new Settings();
+            
             BasicSetupListViewItem.IsSelected = true;
         }
 
         private void BasicSetup_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("BasicSettings_Selected");
-            CurrentView.Content = new BasicSetup();
+            CurrentView.Content = BasicSetupPage;
             ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
             if (selected != null) selected.IsSelected = false;
         }
@@ -34,7 +38,7 @@ namespace SlimWifiConfig
         private void WiFiSetup_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("WiFiSetup_Selected");
-            CurrentView.Content = new WiFiSetup();
+            CurrentView.Content = WiFiSetupPage;
             ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
             if (selected != null) selected.IsSelected = false;
         }
@@ -42,7 +46,7 @@ namespace SlimWifiConfig
         private void TCPUDPSettings_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("TCPUDPSettings_Selected");
-            CurrentView.Content = new TCPUDPSettings();
+            CurrentView.Content = TCPIPSetupPage;
             ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
             if (selected != null) selected.IsSelected = false;
         }
@@ -50,7 +54,7 @@ namespace SlimWifiConfig
         private void DataLogging_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("DataLogging_Selected");
-            CurrentView.Content = new DataLogging();
+            CurrentView.Content = DataLoggerPage;
             ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
             if (selected != null) selected.IsSelected = false;
         }
@@ -58,7 +62,7 @@ namespace SlimWifiConfig
         private void RemoteTerminal_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("RemoteTerminal_Selected");
-            CurrentView.Content = new RemoteTerminal();
+            CurrentView.Content = RemoteTerminalPage;
             ListViewItem selected = (ListViewItem)SettingsListView.SelectedItem;
             if (selected != null) selected.IsSelected = false;
         }
@@ -66,7 +70,7 @@ namespace SlimWifiConfig
         private void Settings_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Settings_Selected");
-            CurrentView.Content = new Settings();
+            CurrentView.Content = SettingsPage;
             ListViewItem selected = (ListViewItem)MainMenuListView.SelectedItem;
             if (selected != null) selected.IsSelected = false;
         }

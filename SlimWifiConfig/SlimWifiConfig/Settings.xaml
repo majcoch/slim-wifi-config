@@ -137,12 +137,11 @@
                     </ComboBox>
                 </StackPanel>
 
-                <Button Width="85"
+                <Button Content="Connect"
+                        Width="85"
                         Height="30"
                         HorizontalAlignment="Left"
-                        Margin="0,10,0,0">
-                    Connect
-                </Button>
+                        Margin="0,10,0,0"/>
 
             </StackPanel>
         </Grid>
