@@ -24,5 +24,23 @@ namespace SlimWifiConfig
         {
             InitializeComponent();
         }
+
+        private void StationItem_Selected(object sender, RoutedEventArgs e)
+        {
+            StationModeSettingsStackPanel.Visibility = Visibility.Visible;
+            SoftAPModeSettingsStackPanel.Visibility = Visibility.Collapsed;
+        }
+
+        private void SoftAPItem_Selected(object sender, RoutedEventArgs e)
+        {
+            StationModeSettingsStackPanel.Visibility = Visibility.Collapsed;
+            SoftAPModeSettingsStackPanel.Visibility = Visibility.Visible;
+        }
+
+        private void StationAndSoftAPItem_Selected(object sender, RoutedEventArgs e)
+        {
+            StationModeSettingsStackPanel.Visibility = Visibility.Visible;
+            SoftAPModeSettingsStackPanel.Visibility = Visibility.Visible;
+        }
     }
 }

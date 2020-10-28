@@ -9,25 +9,48 @@
       d:DesignWidth="650"
       Title="DataLogging">
 
-    <Grid Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <!-- Page header -->
-        <Grid Grid.Row="0"
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Page header -->
+            <Grid Grid.Row="0"
               Grid.Column="0">
-            <TextBlock VerticalAlignment="Center"
+                <TextBlock VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Margin="20,0,0,0"
                        Text="DATA LOGGER"
                        Foreground="White"
                        FontSize="20"
                        FontWeight="Bold"/>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  Margin="20,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="Data logger server"
+                               Foreground="White"
+                               FontSize="25"/>
+                    <Button Content="Start"
+                        Width="85"
+                        Height="30"
+                        Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2"
+                  Grid.Column="0"
+                  Margin="20,0,0,0">
+                <DataGrid Width="400"
+                          Height="500"
+                          HorizontalAlignment="Left">
+                </DataGrid>
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>

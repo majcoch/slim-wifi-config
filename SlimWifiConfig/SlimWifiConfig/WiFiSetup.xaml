@@ -45,9 +45,9 @@
                     <ComboBox HorizontalAlignment="Left"
                               Margin="0,5,0,0"
                               Width="150">
-                        <ComboBoxItem Content="Station"/>
-                        <ComboBoxItem Content="SoftAP"/>
-                        <ComboBoxItem Content="SoftAP + Station"/>
+                        <ComboBoxItem x:Name="StationItem" Content="Station" Selected="StationItem_Selected"/>
+                        <ComboBoxItem x:Name="SoftAPItem" Content="SoftAP" Selected="SoftAPItem_Selected"/>
+                        <ComboBoxItem x:Name="StationAndSoftAPItem" Content="SoftAP + Station" Selected="StationAndSoftAPItem_Selected"/>
                     </ComboBox>
                 </StackPanel>
             </Grid>
@@ -56,8 +56,10 @@
                   Grid.Column="0"
                   Margin="20,0,0,0"
                   Visibility="Visible">
-                <StackPanel Orientation="Vertical"
-                            Margin="0,10,0,0">
+                <StackPanel x:Name="StationModeSettingsStackPanel" 
+                            Orientation="Vertical"
+                            Margin="0,10,0,0"
+                            Visibility="Collapsed">
                     <!-- Section header -->
                     <TextBlock Text="Station mode settings"
                                Foreground="White"
@@ -206,8 +208,10 @@
             <Grid Grid.Row="3"
                   Grid.Column="0"
                   Margin="20,0,0,0">
-                <StackPanel Orientation="Vertical"
-                            Margin="0,10,0,0">
+                <StackPanel x:Name="SoftAPModeSettingsStackPanel"
+                            Orientation="Vertical"
+                            Margin="0,10,0,0"
+                            Visibility="Collapsed">
                     <!-- Section header -->
                     <TextBlock Text="Access Point mode settings"
                                Foreground="White"
