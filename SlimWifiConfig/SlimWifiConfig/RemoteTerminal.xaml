@@ -9,25 +9,135 @@
       d:DesignWidth="650"
       Title="RemoteTerminal">
 
-    <Grid Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <!-- Page header -->
-        <Grid Grid.Row="0"
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Page header -->
+            <Grid Grid.Row="0"
               Grid.Column="0">
-            <TextBlock VerticalAlignment="Center"
+                <TextBlock VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Margin="20,0,0,0"
                        Text="REMOTE TERMINAL"
                        Foreground="White"
                        FontSize="20"
                        FontWeight="Bold"/>
+            </Grid>
+            <!-- Remote terminal setup section -->
+            <Grid Grid.Row="1"
+              Grid.Column="0"
+              Margin="20,0,0,0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Set up remote terminal"
+                           Foreground="White"
+                           FontSize="25"/>
+                    <!-- Server settings -->
+                    <RadioButton x:Name="ServerCheckButton" Content="Server"
+                             Margin="0,10,0,0" Checked="ServerCheckButton_Checked"/>
+                    <StackPanel x:Name="ServerSettingsStackPanel"
+                            Orientation="Vertical"
+                            Visibility="Collapsed">
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Server type"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <ComboBox Margin="0,5,0,0"
+                              Width="110"
+                              HorizontalAlignment="Left">
+                            <ComboBoxItem Content="TCP" IsSelected="True"/>
+                            <ComboBoxItem Content="UDP"/>
+                        </ComboBox>
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Port"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                        <StackPanel Orientation="Horizontal"
+                                Margin="0,10,0,0">
+                            <TextBlock Text="Server IP:"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                            <TextBlock Margin="10,0,0,0" 
+                                   Text="N/A"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        </StackPanel>
+                        <Button Content="Start"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                    </StackPanel>
+                    <!-- Client settings -->
+                    <RadioButton x:Name="ClientCheckButton" 
+                             Content="Client"
+                             Margin="0,5,0,0" Checked="ClientCheckButton_Checked"/>
+                    <StackPanel x:Name="ClientSettingsStackPanel"
+                            Orientation="Vertical"
+                            Visibility="Collapsed">
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Client type"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <ComboBox Margin="0,5,0,0"
+                              Width="110"
+                              HorizontalAlignment="Left">
+                            <ComboBoxItem Content="TCP" IsSelected="True"/>
+                            <ComboBoxItem Content="UDP"/>
+                        </ComboBox>
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Server IP address"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Port"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+                        <Button Content="Connect"
+                                Margin="0,5,0,0"
+                                Width="85"
+                                Height="30"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <!-- Remote terminal console section -->
+            <Grid Grid.Row="2"
+              Grid.Column="0"
+              Margin="20,10,0,10">
+                <StackPanel>
+                    <TextBlock Text="Console"
+                           Foreground="White"
+                           FontSize="25"/>
+                    <TextBox Width="500"
+                         Height="300"
+                         IsReadOnly="True"
+                         HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Horizontal"
+                            Margin=" 0,5,0,0">
+                        <TextBox Width="410"
+                             Height="30"/>
+                        <Button Content="Send"
+                            Margin="5,0,0,0"
+                            Width="85"
+                            Height="30"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Page>

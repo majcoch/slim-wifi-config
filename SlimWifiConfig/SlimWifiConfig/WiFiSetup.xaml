@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SlimWifiConfig"
       mc:Ignorable="d" 
-      d:DesignHeight="1850"
+      d:DesignHeight="2020"
       d:DesignWidth="650"
       Title="WiFiSetup">
     
@@ -212,19 +212,49 @@
                     <TextBlock Text="Access Point mode settings"
                                Foreground="White"
                                FontSize="25"/>
-                    <!-- Network SSD setting -->
-                    <TextBlock Text="Access point name"
-                                   Foreground="White"
-                                   FontSize="20"/>
+                    <!-- Access point configuration section -->
                     <StackPanel Orientation="Vertical"
                                 Margin="0,10,0,0">
+                        <TextBlock Text="Access point configuration"
+                                   Foreground="White"
+                                   FontSize="20"/>
                         <TextBlock Margin="0,10,0,0" 
                                    Text="Network's SSID"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Network's password"
                                    Foreground="White"
                                    FontSize="13"/>
                         <PasswordBox HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
+
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Channel ID"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <TextBox HorizontalAlignment="Left"
+                                     Margin="0,5,0,0"
+                                     Width="150"/>
+
+                        <TextBlock Margin="0,10,0,0" 
+                                   Text="Encryption method"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                        <ComboBox Margin="0,5,0,0"
+                              Width="110"
+                              HorizontalAlignment="Left">
+                            <ComboBoxItem Content="Open" IsSelected="True"/>
+                            <ComboBoxItem Content="WPA_PSK"/>
+                            <ComboBoxItem Content="WPA2_PSK"/>
+                            <ComboBoxItem Content="WPA_WPA2_PSK"/>
+                        </ComboBox>
+
                         <Button Content="Apply"
                                 Margin="0,5,0,0"
                                 Width="85"

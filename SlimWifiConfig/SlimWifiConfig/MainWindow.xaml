@@ -56,7 +56,8 @@
         <Grid Grid.Column="1"
               Background="Black">
             <Frame x:Name="CurrentView" 
-                   NavigationUIVisibility="Hidden"/>
+                   NavigationUIVisibility="Hidden"
+                   Margin="0,29,0,0"/>
         </Grid>
         <!-- Side bar -->
         <Grid>

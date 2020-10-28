@@ -9,43 +9,80 @@
       d:DesignWidth="650"
       Title="TCPUDPSettings">
 
-    <Grid Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <!-- Page header -->
-        <Grid Grid.Row="0"
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Page header -->
+            <Grid Grid.Row="0"
               Grid.Column="0">
-            <TextBlock VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Margin="20,0,0,0"
-                       Text="TCP/IP SETUP"
-                       Foreground="White"
-                       FontSize="20"
-                       FontWeight="Bold"/>
-        </Grid>
+                <TextBlock VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="20,0,0,0"
+                           Text="TCP/IP SETUP"
+                           Foreground="White"
+                           FontSize="20"
+                           FontWeight="Bold"/>
+            </Grid>
+            <!-- Check connection to web section -->
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  Margin="20,0,0,0">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical">
+                        <!-- Section header -->
+                        <TextBlock Text="Check connection to WWW"
+                               Foreground="White"
+                               FontSize="25"/>
+                        <TextBlock Text="Web address or IP"
+                               Foreground="White"
+                               FontSize="13"/>
+                        <TextBox HorizontalAlignment="Left"
+                             Margin="0,5,0,0"
+                             Width="150"/>
+                        <Button Content="Ping"
+                            Margin="0,5,0,0"
+                            Width="85"
+                            Height="32"/>
+                    </StackPanel>
 
-        <Grid Grid.Row="1"
-              Grid.Column="0"
-              Margin="20,0,0,0">
-            <StackPanel Orientation="Vertical"
-                        Margin="0,10,0,0">
-                <TextBlock Foreground="White"
-                           FontSize="13"
-                           Text="Module mode"/>
-                <ComboBox HorizontalAlignment="Left"
-                          Margin="0,5,0,0"
-                          Width="150">
-                    <ComboBoxItem Content="SoftAP"/>
-                    <ComboBoxItem Content="SoftAP + Station"/>
-                </ComboBox>
-            </StackPanel>
-        </Grid>
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,0">
+                        <TextBlock Text="Multiple connections"
+                               Foreground="White"
+                               FontSize="25"/>
+                        <RadioButton Content="Enabled"
+                                     Margin="0,5,0,0"/>
+                        <RadioButton Content="Disabled"
+                                     Margin="0,5,0,0"/>
+                    </StackPanel>
 
-    </Grid>
+                    <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,0">
+                        <TextBlock Text="TCP server timeout"
+                               Foreground="White"
+                               FontSize="25"/>
+                        <TextBlock Text="Timeout (in seconds)"
+                               Foreground="White"
+                               FontSize="13"/>
+                        <TextBox HorizontalAlignment="Left"
+                             Margin="0,5,0,0"
+                             Width="150"/>
+                        <Button Content="Save"
+                            Margin="0,5,0,0"
+                            Width="85"
+                            Height="32"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </ScrollViewer>
 </Page>
