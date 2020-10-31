@@ -58,33 +58,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BasicSetup.xaml.cs">
+    <Compile Include="View\BasicSetup.xaml.cs">
       <DependentUpon>BasicSetup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataLogging.xaml.cs">
+    <Compile Include="View\DataLogging.xaml.cs">
       <DependentUpon>DataLogging.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RemoteTerminal.xaml.cs">
+    <Compile Include="Model\CommandProcessor.cs" />
+    <Compile Include="View\RemoteTerminal.xaml.cs">
       <DependentUpon>RemoteTerminal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings.xaml.cs">
+    <Compile Include="View\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TCPUDPSettings.xaml.cs">
+    <Compile Include="View\TCPUDPSettings.xaml.cs">
       <DependentUpon>TCPUDPSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WiFiSetup.xaml.cs">
+    <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="View\WiFiSetup.xaml.cs">
       <DependentUpon>WiFiSetup.xaml</DependentUpon>
     </Compile>
-    <Page Include="BasicSetup.xaml">
+    <Page Include="View\BasicSetup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataLogging.xaml">
+    <Page Include="View\DataLogging.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -92,23 +94,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RemoteTerminal.xaml">
+    <Page Include="View\RemoteTerminal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Settings.xaml">
+    <Page Include="View\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TCPUDPSettings.xaml">
+    <Page Include="View\TCPUDPSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WiFiSetup.xaml">
+    <Page Include="View\WiFiSetup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,5 +162,6 @@
       <Version>0.9.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

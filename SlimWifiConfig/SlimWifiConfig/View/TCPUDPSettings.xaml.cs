@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SlimWifiConfig
+namespace SlimWifiConfig.View
 {
     /// <summary>
-    /// Interaction logic for DataLogging.xaml
+    /// Interaction logic for TCPUDPSettings.xaml
     /// </summary>
-    public partial class DataLogging : Page
+    public partial class TCPUDPSettings : Page
     {
-        public DataLogging()
+        public TCPUDPSettings()
         {
             InitializeComponent();
         }

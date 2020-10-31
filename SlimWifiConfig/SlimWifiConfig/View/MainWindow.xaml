@@ -1,4 +1,4 @@
-﻿<Window x:Class="SlimWifiConfig.MainWindow"
+﻿<Window x:Class="SlimWifiConfig.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:SlimWifiConfig"
         mc:Ignorable="d"
         Title="SlimWiFi Configurator"
-        Icon="Icons/icon.png"
+        Icon="/Icons/icon.png"
         WindowStartupLocation="CenterScreen"
         fw:AcrylicWindow.ExtendViewIntoTitleBar="True"
         fw:AcrylicWindow.Enabled="True"
@@ -90,7 +90,7 @@
                                   BorderThickness="0"
                                   Selected="BasicSetup_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/BasicSetupPageIcon.png"
+                            <Image Source="/Assets/BasicSetupPageIcon.png"
                                    Width="20"
                                    Height="20"
                                    VerticalAlignment="Center"
@@ -108,7 +108,7 @@
                                   BorderThickness="0"
                                   Selected="WiFiSetup_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/WiFiSetupPageIcon.png"
+                            <Image Source="/Assets/WiFiSetupPageIcon.png"
                                    Width="20"
                                    Height="20"
                                    VerticalAlignment="Center"
@@ -126,7 +126,7 @@
                                   BorderThickness="0"
                                   Selected="TCPUDPSettings_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/TCPIPPageIcon.png"
+                            <Image Source="/Assets/TCPIPPageIcon.png"
                                    Width="20"
                                    Height="20"
                                    VerticalAlignment="Center"
@@ -144,7 +144,7 @@
                                   BorderThickness="0"
                                   Selected="DataLogging_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/DataLoggerPageIcon.png"
+                            <Image Source="/Assets/DataLoggerPageIcon.png"
                                    Width="20"
                                    Height="20"
                                    VerticalAlignment="Center"
@@ -162,7 +162,7 @@
                                   BorderThickness="0"
                                   Selected="RemoteTerminal_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/RemoteTerminalPageIcon.png"
+                            <Image Source="/Assets/RemoteTerminalPageIcon.png"
                                    Width="20"
                                    Height="20"
                                    VerticalAlignment="Center"
@@ -188,7 +188,7 @@
                                   VerticalAlignment="Bottom"
                                   Selected="Settings_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/SettingsPageIcon.png"
+                            <Image Source="/Assets/SettingsPageIcon.png"
                                    Width="20"
                                    Height="20"
                                    VerticalAlignment="Center"

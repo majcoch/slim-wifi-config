@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SlimWifiConfig
+namespace SlimWifiConfig.View
 {
     public partial class MainWindow : Window
     {

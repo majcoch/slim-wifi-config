@@ -2,7 +2,7 @@
 using System.Windows.Navigation;
 using System.Diagnostics;
 
-namespace SlimWifiConfig
+namespace SlimWifiConfig.View
 {
     /// <summary>
     /// Interaction logic for Settings.xaml

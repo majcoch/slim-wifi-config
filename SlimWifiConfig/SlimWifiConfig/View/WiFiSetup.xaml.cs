@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SlimWifiConfig
+namespace SlimWifiConfig.View
 {
     /// <summary>
     /// Interaction logic for WiFiSetup.xaml
