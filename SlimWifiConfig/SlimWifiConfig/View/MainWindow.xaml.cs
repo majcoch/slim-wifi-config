@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO.Ports;
 using System.Windows;
 using System.Windows.Controls;
+using SlimWifiConfig.Service;
 
 namespace SlimWifiConfig.View
 {
@@ -12,19 +14,25 @@ namespace SlimWifiConfig.View
         private readonly Page DataLoggerPage;
         private readonly Page RemoteTerminalPage;
         private readonly Page SettingsPage;
+        private CommandProcessingService CmdProcessor;
+        private SerialPort Port;
 
         public MainWindow()
         {
-            InitializeComponent();
             
-            BasicSetupPage = new BasicSetup();
-            WiFiSetupPage = new WiFiSetup();
-            TCPIPSetupPage = new TCPUDPSettings();
+            InitializeComponent();
+
+            Port = new SerialPort();
+            CmdProcessor = new CommandProcessingService(Port);
+
+            SettingsPage = new Settings(Port);
+            BasicSetupPage = new BasicSetup(CmdProcessor);
+            WiFiSetupPage = new WiFiSetup(CmdProcessor);
+            TCPIPSetupPage = new TCPUDPSettings(CmdProcessor);
             DataLoggerPage = new DataLogging();
             RemoteTerminalPage = new RemoteTerminal();
-            SettingsPage = new Settings();
-            
-            BasicSetupListViewItem.IsSelected = true;
+
+            SettingsListViewItem.IsSelected = true;
         }
 
         private void BasicSetup_Selected(object sender, RoutedEventArgs e)

@@ -42,16 +42,18 @@
                        Foreground="White"
                        FontSize="25"/>
                     <StackPanel Orientation="Horizontal">
-                        <Button Margin="0,10,0,0"
+                        <Button x:Name="TestConnectionButton"
+                            Margin="0,10,0,0"
                             Width="85"
                             Height="30"
-                            Content="Test"/>
+                            Content="Test" Click="TestConnectionButton_Click"/>
                         <TextBlock Text="Connection status:"
                                VerticalAlignment="Center"
                                Margin="5,10,0,0"
                                Foreground="White"
                                FontSize="13"/>
-                        <TextBlock Text="N/A"
+                        <TextBlock x:Name="ConnectionStatusTextBlock"
+                            Text="N/A"
                                VerticalAlignment="Center"
                                Margin="5,10,0,0"
                                Foreground="White"
@@ -75,49 +77,54 @@
                         <TextBlock Text="Commands echoing"
                                Foreground="White"
                                FontSize="13"/>
-                        <RadioButton Content="Enabled"
-                                 Foreground="White"
-                                 FontSize="13"
-                                 Margin="0,5,0,0"/>
-                        <RadioButton Content="Disabled"
-                                 Foreground="White"
-                                 FontSize="13"/>
+                        <RadioButton x:Name="CommandEchoingEnabledRadioButton"
+                                     Content="Enabled"
+                                     Foreground="White"
+                                     FontSize="13"
+                                     Margin="0,5,0,0" Checked="CommandEchoingEnabledRadioButton_Checked"/>
+                        <RadioButton x:Name="CommandEchoingDisabledRadioButton"
+                                     Content="Disabled"
+                                     Foreground="White"
+                                     FontSize="13" Checked="CommandEchoingDisabledRadioButton_Checked"/>
                     </StackPanel>
-                    <!-- Baudrate selection -->
                     <StackPanel Orientation="Vertical"
+                                Visibility="Collapsed">
+                        <!-- Baudrate selection -->
+                        <StackPanel Orientation="Vertical"
                             VerticalAlignment="Top"
                             Margin="0,10,0,0">
-                        <TextBlock Text="Baudrate"
+                            <TextBlock Text="Baudrate"
                                Foreground="White"
                                FontSize="13"/>
-                        <ComboBox Margin="0,5,0,0"
+                            <ComboBox Margin="0,5,0,0"
                               Width="110"
                               HorizontalAlignment="Left">
-                            <ComboBoxItem Content="Bootlader"/>
-                            <ComboBoxItem Content="300"/>
-                            <ComboBoxItem Content="600"/>
-                            <ComboBoxItem Content="1200"/>
-                            <ComboBoxItem Content="2400"/>
-                            <ComboBoxItem Content="4800"/>
-                            <ComboBoxItem Content="9600"/>
-                            <ComboBoxItem Content="14400"/>
-                            <ComboBoxItem Content="19200"/>
-                            <ComboBoxItem Content="38400"/>
-                            <ComboBoxItem Content="57600"/>
-                            <ComboBoxItem Content="115200" IsSelected="True"/>
-                            <ComboBoxItem Content="230400"/>
-                            <ComboBoxItem Content="460800"/>
-                        </ComboBox>
-                    </StackPanel>
-                    <!-- Save config to flash - permanent change -->
-                    <CheckBox Margin="0,10,0,0"
+                                <ComboBoxItem Content="Bootlader"/>
+                                <ComboBoxItem Content="300"/>
+                                <ComboBoxItem Content="600"/>
+                                <ComboBoxItem Content="1200"/>
+                                <ComboBoxItem Content="2400"/>
+                                <ComboBoxItem Content="4800"/>
+                                <ComboBoxItem Content="9600"/>
+                                <ComboBoxItem Content="14400"/>
+                                <ComboBoxItem Content="19200"/>
+                                <ComboBoxItem Content="38400"/>
+                                <ComboBoxItem Content="57600"/>
+                                <ComboBoxItem Content="115200" IsSelected="True"/>
+                                <ComboBoxItem Content="230400"/>
+                                <ComboBoxItem Content="460800"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <!-- Save config to flash - permanent change -->
+                        <CheckBox Margin="0,10,0,0"
                           Content="Save to flash"/>
-                    <!-- Execute commands to configure module -->
-                    <Button HorizontalAlignment="Left"
+                        <!-- Execute commands to configure module -->
+                        <Button HorizontalAlignment="Left"
                         Margin="0,5,0,0"
                         Width="85"
                         Height="30"
                         Content="Apply"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
             <!-- Module firmware info secrtion -->
@@ -135,7 +142,8 @@
                         <TextBlock Text="AT version:"
                                Foreground="White"
                                FontSize="13"/>
-                        <TextBlock Text="N/A"
+                        <TextBlock x:Name="ATVersionTextBlock"
+                            Text="N/A"
                                Foreground="White"
                                FontSize="13"
                                Margin="10,0,0,0"/>
@@ -144,16 +152,18 @@
                         <TextBlock Text="SDK version:"
                                Foreground="White"
                                FontSize="13"/>
-                        <TextBlock Text="N/A"
-                               Foreground="White"
-                               FontSize="13"
-                               Margin="10,0,0,0"/>
+                        <TextBlock x:Name="SDKVersionTextBlock" 
+                                   Text="N/A"
+                                   Foreground="White"
+                                   FontSize="13"
+                                   Margin="10,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Compile time:"
                                Foreground="White"
                                FontSize="13"/>
-                        <TextBlock Text="N/A"
+                        <TextBlock x:Name="CompileTimeTextBlock" 
+                                   Text="N/A"
                                Foreground="White"
                                FontSize="13"
                                Margin="10,0,0,0"/>
@@ -162,16 +172,17 @@
                         <TextBlock Text="Bin version:"
                                Foreground="White"
                                FontSize="13"/>
-                        <TextBlock Text="N/A"
+                        <TextBlock x:Name="BinVersionTextBlock" Text="N/A"
                                Foreground="White"
                                FontSize="13"
                                Margin="10,0,0,0"/>
                     </StackPanel>
-                    <Button HorizontalAlignment="Left"
+                    <Button x:Name="RetriveFirmwareInformation_Button"
+                        HorizontalAlignment="Left"
                         Margin="0,5,0,0"
                         Width="85"
                         Height="30"
-                        Content="Retrive"/>
+                        Content="Retrive" Click="RetriveFirmwareInformation_Button_Click"/>
                 </StackPanel>
             </Grid>
             <!-- Module firmware info secrtion -->
@@ -191,11 +202,12 @@
                         <TextBlock Text="Software reset"
                                Foreground="White"
                                FontSize="13"/>
-                        <Button HorizontalAlignment="Left"
+                        <Button x:Name="SoftwareResetButton"
+                                HorizontalAlignment="Left"
                             Margin="0,5,0,0"
                             Width="85"
                             Height="30"
-                            Content="Reset"/>
+                            Content="Reset" Click="SoftwareResetButton_Click"/>
                     </StackPanel>
                     <!-- Restore to default settings -->
                     <StackPanel Orientation="Vertical"
@@ -203,11 +215,12 @@
                         <TextBlock Text="Restore to default settings"
                                Foreground="White"
                                FontSize="13"/>
-                        <Button HorizontalAlignment="Left"
+                        <Button x:Name="RestoreToDefaultSettingsButton"
+                                HorizontalAlignment="Left"
                             Margin="0,5,0,0"
                             Width="85"
                             Height="30"
-                            Content="Restore"/>
+                            Content="Restore" Click="RestoreToDefaultSettingsButton_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>

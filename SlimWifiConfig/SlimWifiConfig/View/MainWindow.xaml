@@ -183,7 +183,8 @@
                           VerticalAlignment="Bottom"
                           Background="Transparent"
                           ItemContainerStyle="{StaticResource ListViewItem_Style}">
-                    <ListViewItem Height="47"
+                    <ListViewItem x:Name="SettingsListViewItem"
+                                  Height="47"
                                   BorderThickness="0"
                                   VerticalAlignment="Bottom"
                                   Selected="Settings_Selected">

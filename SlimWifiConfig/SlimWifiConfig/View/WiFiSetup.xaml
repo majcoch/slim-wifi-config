@@ -54,8 +54,7 @@
             <!-- Station mode settings section -->
             <Grid Grid.Row="2"
                   Grid.Column="0"
-                  Margin="20,0,0,0"
-                  Visibility="Visible">
+                  Margin="20,0,0,0">
                 <StackPanel x:Name="StationModeSettingsStackPanel" 
                             Orientation="Vertical"
                             Margin="0,10,0,0"
@@ -71,15 +70,19 @@
                                    Foreground="White"
                                    FontSize="20"/>
                         <!-- DHCP Enabled -->
-                        <RadioButton Content="Get IP from DHCP"
-                                     Margin="0,5,0,0"/>
-                        <StackPanel Orientation="Vertical">
+                        <RadioButton x:Name="DHCPEnabledRadioButton"
+                                     Content="Get IP from DHCP"
+                                     Margin="0,5,0,0" Checked="DHCPEnabledRadioButton_Checked"/>
+                        <StackPanel x:Name="DHCPEnabledStackPanel"
+                                    Orientation="Vertical"
+                                    Visibility="Collapsed">
 
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Station IP:"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBlock Text="N/A"
+                                <TextBlock x:Name="StationIpTextBlock"
+                                           Text="N/A"
                                        Foreground="White"
                                        FontSize="13"
                                        Margin="10,0,0,0"/>
@@ -88,7 +91,8 @@
                                 <TextBlock Text="Gateway:"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBlock Text="N/A"
+                                <TextBlock x:Name="StationGatewayTextBlock"
+                                           Text="N/A"
                                        Foreground="White"
                                        FontSize="13"
                                        Margin="10,0,0,0"/>
@@ -97,26 +101,32 @@
                                 <TextBlock Text="Netmask"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBlock Text="N/A"
+                                <TextBlock x:Name="StationNetmaskTextBlock"
+                                           Text="N/A"
                                        Foreground="White"
                                        FontSize="13"
                                        Margin="10,0,0,0"/>
                             </StackPanel>
-                            <Button Content="Retrive"
+                            <Button x:Name="RetriveStationIpButton"
+                                    Content="Retrive"
                                 Margin="0,5,0,0"
                                 Width="85"
-                                Height="30"/>
+                                Height="30" Click="RetriveStationIpButton_Click"/>
                         </StackPanel>
                         <!-- DHCP Disabled -->
-                        <RadioButton Content="Set static IP"
-                                     Margin="0,5,0,0"/>
-                        <StackPanel Orientation="Vertical">
+                        <RadioButton x:Name="DHCPDisabledRadioButton"
+                                     Content="Set static IP"
+                                     Margin="0,5,0,0" Checked="DHCPDisabledRadioButton_Checked"/>
+                        <StackPanel x:Name="DHCPDisabledStackPanel"
+                                    Orientation="Vertical"
+                                    Visibility="Collapsed">
                             <StackPanel Orientation="Vertical"
                                     Margin="0,5,0,0">
                                 <TextBlock Text="Module's IP"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBox HorizontalAlignment="Left"
+                                <TextBox x:Name="StationStaticIpTextBox"
+                                         HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
                             </StackPanel>
@@ -125,7 +135,8 @@
                                 <TextBlock Text="Gateway"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBox HorizontalAlignment="Left"
+                                <TextBox x:Name="StationStaticGatewayTextBox"
+                                         HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
                             </StackPanel>
@@ -134,14 +145,16 @@
                                 <TextBlock Text="Net mask"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBox HorizontalAlignment="Left"
+                                <TextBox x:Name="StationStaticNetmaskTextBox"
+                                         HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
                             </StackPanel>
-                            <Button Content="Save"
+                            <Button x:Name="SetStationStaticDHCPButton"
+                                    Content="Save"
                                 Margin="0,5,0,0"
                                 Width="85"
-                                Height="30"/>
+                                Height="30" Click="SetStationStaticDHCPButton_Click"/>
                         </StackPanel>
                     </StackPanel>
                     <!-- Connect to AP section -->
@@ -156,12 +169,14 @@
                                    FontSize="13"/>
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,5,0,0">
-                            <ComboBox HorizontalAlignment="Left"
+                            <ComboBox x:Name="AvaliableAPsComboBox"
+                                      HorizontalAlignment="Left"
                                       Width="150"/>
-                            <Button Margin="10,0,0,0"
+                            <Button x:Name="ScanAvaliableAPsButton"
+                                    Margin="10,0,0,0"
                                     Width="85"
                                     Height="30"
-                                    Content="Scan"/>
+                                    Content="Scan" Click="ScanAvaliableAPsButton_Click"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical"
                                     Margin="0,10,0,0">
@@ -169,18 +184,30 @@
                                        Text="Network's password"
                                        Foreground="White"
                                        FontSize="13"/>
-                            <PasswordBox HorizontalAlignment="Left"
+                            <PasswordBox x:Name="WiFiPasswordBox"
+                                         HorizontalAlignment="Left"
                                          Margin="0,5,0,0"
                                          Width="150"/>
                         </StackPanel>
-                        <CheckBox Content="Save to flash"
+                        <CheckBox x:Name="SaveWiFiConnectionToFlashCheckBox"
+                                  Content="Save to flash"
                                   Foreground="White"
                                   FontSize="13"
                                   Margin="0,5,0,0"/>
-                        <Button Content="Connect"
-                                Margin="0,5,0,0"
-                                Width="85"
-                                Height="30"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="ConnectToWiFiButton"
+                                    Content="Connect"
+                                    Margin="0,5,0,0"
+                                    Width="85"
+                                    Height="30" 
+                                    Click="ConnectToWiFiButton_Click"/>
+                            <TextBlock x:Name="ConnectionStatusTextBlock"
+                                       Margin="10,0,0,0" 
+                                       VerticalAlignment="Center"                                   
+                                       Foreground="Yellow"
+                                       FontSize="13"/>
+                        </StackPanel>
+                        
                     </StackPanel>
                     <!-- Station MAC info section -->
                     <StackPanel Orientation="Vertical"
@@ -192,15 +219,17 @@
                             <TextBlock Text="MAC:"
                                        Foreground="White"
                                        FontSize="13"/>
-                            <TextBlock Margin="10,0,0,0" 
+                            <TextBlock x:Name="StationMACTextBlock"
+                                       Margin="10,0,0,0" 
                                        Text="N/A"
                                        Foreground="White"
                                        FontSize="13"/>
                         </StackPanel>
-                        <Button Content="Retrive"
+                        <Button x:Name="StationMACRetriveButton"
+                                Content="Retrive"
                                 Margin="0,5,0,0"
                                 Width="85"
-                                Height="30"/>
+                                Height="30" Click="StationMACRetriveButton_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -226,7 +255,8 @@
                                    Text="Network's SSID"
                                    Foreground="White"
                                    FontSize="13"/>
-                        <TextBox HorizontalAlignment="Left"
+                        <TextBox x:Name="AccesPointNetworkNameTextBox"
+                                 HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
 
@@ -234,7 +264,8 @@
                                    Text="Network's password"
                                    Foreground="White"
                                    FontSize="13"/>
-                        <PasswordBox HorizontalAlignment="Left"
+                        <PasswordBox x:Name="AccesPointNetworkPasswordBox"
+                                     HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
 
@@ -242,7 +273,8 @@
                                    Text="Channel ID"
                                    Foreground="White"
                                    FontSize="13"/>
-                        <TextBox HorizontalAlignment="Left"
+                        <TextBox x:Name="AccesPointChannelIdTextBox"
+                                 HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
 
@@ -250,7 +282,8 @@
                                    Text="Encryption method"
                                    Foreground="White"
                                    FontSize="13"/>
-                        <ComboBox Margin="0,5,0,0"
+                        <ComboBox x:Name="AccesPointEncryptionMethodComboBox"
+                                  Margin="0,5,0,0"
                               Width="110"
                               HorizontalAlignment="Left">
                             <ComboBoxItem Content="Open" IsSelected="True"/>
@@ -259,10 +292,11 @@
                             <ComboBoxItem Content="WPA_WPA2_PSK"/>
                         </ComboBox>
 
-                        <Button Content="Apply"
+                        <Button x:Name="AccesPointSaveConfigurtionButton"
+                                Content="Apply"
                                 Margin="0,5,0,0"
                                 Width="85"
-                                Height="30"/>
+                                Height="30" Click="AccesPointSaveConfigurtionButton_Click"/>
                     </StackPanel>
                     <!-- Set up IP configuration section -->
                     <StackPanel Orientation="Vertical"
@@ -271,18 +305,23 @@
                                    Foreground="White"
                                    FontSize="20"/>
                         <!-- DHCP Enabled -->
-                        <RadioButton Content="Default DHCP settings"
-                                     Margin="0,5,0,0"/>
+                        <RadioButton x:Name="AccessPointAutoDHCPRadioButton"
+                                     Content="Default DHCP settings"
+                                     Margin="0,5,0,0" Checked="AccessPointAutoDHCPRadioButton_Checked"/>
                         <!-- DHCP Disabled -->
-                        <RadioButton Content="Custom DHCP"
-                                     Margin="0,5,0,0"/>
-                        <StackPanel Orientation="Vertical">
+                        <RadioButton x:Name="AccessPointStaticDHCPRadioButton"
+                                     Content="Custom DHCP"
+                                     Margin="0,5,0,0" Checked="AccessPointStaticDHCPRadioButton_Checked"/>
+                        <StackPanel Orientation="Vertical"
+                                    x:Name="AccessPointCustomDHCPStackPanel"
+                                    Visibility="Collapsed">
                             <StackPanel Orientation="Vertical"
                                     Margin="0,5,0,0">
                                 <TextBlock Text="Lease time (in minutes)"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBox HorizontalAlignment="Left"
+                                <TextBox x:Name="AccessPointDHCPLeaseTimeTextBox"
+                                         HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
                             </StackPanel>
@@ -291,7 +330,8 @@
                                 <TextBlock Text="Start IP"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBox HorizontalAlignment="Left"
+                                <TextBox x:Name="AccessPointDHCPStartIpTextBox"
+                                         HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
                             </StackPanel>
@@ -300,14 +340,16 @@
                                 <TextBlock Text="End IP"
                                        Foreground="White"
                                        FontSize="13"/>
-                                <TextBox HorizontalAlignment="Left"
+                                <TextBox x:Name="AccessPointDHCPEndIpTextBox"
+                                         HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
                             </StackPanel>
-                            <Button Content="Save"
+                            <Button x:Name="SetAccessPointStaticDHCPButton"
+                                    Content="Save"
                                 Margin="0,5,0,0"
                                 Width="85"
-                                Height="30"/>
+                                Height="30" Click="SetAccessPointStaticDHCPButton_Click"/>
                         </StackPanel>
                     </StackPanel>
                     <!-- List connected devices -->
@@ -315,22 +357,22 @@
                         <TextBlock Text="Connected devices"
                                    Foreground="White"
                                    FontSize="20"/>
-                        <ListView Width="500"
+                        <ListView x:Name="ConnectedDevicesListView"
+                                  Width="300"
                                   Height="200"
                                   HorizontalAlignment="Left"
                                   Margin="0,10,0,5">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Name" Width="200"/>
-                                    <GridViewColumn Header="IP" Width="150"/>
-                                    <GridViewColumn Header="MAC" Width="150"/>
+                                    <GridViewColumn Header="IP" Width="auto"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button Content="Update"
+                        <Button x:Name="RetriveConnectedDevicesButton"
+                                Content="Update"
                                 Margin="0,5,0,0"
                                 Width="85"
-                                Height="30"/>
+                                Height="30" Click="RetriveConnectedDevicesButton_Click"/>
                     </StackPanel>
                     <!-- Access point MAC info section -->
                     <StackPanel Orientation="Vertical"
@@ -342,15 +384,17 @@
                             <TextBlock Text="MAC:"
                                        Foreground="White"
                                        FontSize="13"/>
-                            <TextBlock Margin="10,0,0,0" 
+                            <TextBlock x:Name="AccessPointMACTextBlock"
+                                       Margin="10,0,0,0" 
                                        Text="N/A"
                                        Foreground="White"
                                        FontSize="13"/>
                         </StackPanel>
-                        <Button Content="Retrive"
+                        <Button x:Name="AccessPointMACRetriveButton"
+                                Content="Retrive"
                                 Margin="0,5,0,0"
                                 Width="85"
-                                Height="30"/>
+                                Height="30" Click="AccessPointMACRetriveButton_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>

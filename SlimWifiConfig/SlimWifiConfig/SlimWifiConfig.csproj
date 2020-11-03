@@ -58,13 +58,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\ModuleConfiguration.cs" />
+    <Compile Include="Service\CommandProcessingService.cs" />
     <Compile Include="View\BasicSetup.xaml.cs">
       <DependentUpon>BasicSetup.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DataLogging.xaml.cs">
       <DependentUpon>DataLogging.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CommandProcessor.cs" />
     <Compile Include="View\RemoteTerminal.xaml.cs">
       <DependentUpon>RemoteTerminal.xaml</DependentUpon>
     </Compile>
@@ -74,7 +75,6 @@
     <Compile Include="View\TCPUDPSettings.xaml.cs">
       <DependentUpon>TCPUDPSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="View\WiFiSetup.xaml.cs">
       <DependentUpon>WiFiSetup.xaml</DependentUpon>
     </Compile>
@@ -162,6 +162,8 @@
       <Version>0.9.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
