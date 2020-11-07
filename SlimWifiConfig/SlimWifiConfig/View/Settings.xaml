@@ -218,7 +218,7 @@
                         Width="85"
                         Height="30"
                         HorizontalAlignment="Left"
-                        Margin="0,10,0,0" />
+                        Margin="0,10,0,0" Click="ReadCurrentConfigurationButton_Click" />
                 </StackPanel>
             </StackPanel>
         </Grid>

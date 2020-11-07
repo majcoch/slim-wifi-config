@@ -1,47 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SlimWifiConfig.Model
+﻿namespace SlimWifiConfig.Model
 {
-    enum ModuleMode
+    public enum ModuleMode
     {
         STATION,
         SOFT_AP,
         STATION_AND_AP
     }
 
-    struct ModuleIpConfig
+    public struct ModuleIpConfig
     {
-        string ip;
-        string gateway;
-        string netmask;
+        public string ip;
+        public string gateway;
+        public string netmask;
     }
 
-    struct ModuleDhcpConfig
+    public struct ModuleDhcpConfig
     {
-        int leaseTime;
-        string startIp;
-        string endIp;
+        public string leaseTime;
+        public string startIp;
+        public string endIp;
     }
 
-    class ModuleConfiguration
+    public class ModuleConfiguration
     {
-        private bool _commanEchoing;
-        private int _baudrate;
-        private ModuleMode _mode;
-        
-        private bool _accessPointDHCPEnabled;
-        private ModuleDhcpConfig _accessPointDhcpConfig;
-        private ModuleIpConfig _accessPointIpConfig;
-        private string _hostName;
+        public ModuleMode _mode;
 
-        private string _connectedNetworkName;
-        private string _connectedNetworkPassword;
-        private bool _networkAutoConnectEnabled;
-        private bool _stationDHCPEnabled;
-        private ModuleIpConfig _stationIpConfig;
+        public string _hostName;
+        public string _hostPassword;
+        public bool _accessPointDHCPEnabled;
+        public ModuleDhcpConfig _accessPointDhcpConfig;
+        public ModuleIpConfig _accessPointIpConfig;       
+
+        public string _connectedNetworkName;
+        public bool _stationDHCPEnabled;
+        public ModuleIpConfig _stationIpConfig;
+
+        public ModuleConfiguration()
+        {
+            _hostName = "";
+            _hostPassword = "";
+            _accessPointDHCPEnabled = true;
+            _accessPointDhcpConfig = new ModuleDhcpConfig();
+            _accessPointIpConfig = new ModuleIpConfig();
+            _connectedNetworkName = "";
+            _stationDHCPEnabled = true;
+            _stationIpConfig = new ModuleIpConfig();
+        }
     }
 }

@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\ModuleConfiguration.cs" />
     <Compile Include="Service\CommandProcessingService.cs" />
+    <Compile Include="Service\ConfigurationReader.cs" />
     <Compile Include="View\BasicSetup.xaml.cs">
       <DependentUpon>BasicSetup.xaml</DependentUpon>
     </Compile>

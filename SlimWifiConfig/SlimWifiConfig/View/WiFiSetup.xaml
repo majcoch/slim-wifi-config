@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="2020"
       d:DesignWidth="650"
-      Title="WiFiSetup">
+      Title="WiFiSetup"
+      Loaded="OnLoad">
     
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Background="Transparent">

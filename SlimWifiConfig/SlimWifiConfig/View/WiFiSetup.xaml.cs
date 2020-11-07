@@ -1,4 +1,5 @@
-﻿using SlimWifiConfig.Service;
+﻿using SlimWifiConfig.Model;
+using SlimWifiConfig.Service;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -13,15 +14,45 @@ namespace SlimWifiConfig.View
     {
         private CommandProcessingService _CommandProcessor;
 
+        private ModuleConfiguration _ModuleConfiguration;
+
         public WiFiSetup()
         {
             InitializeComponent();
         }
 
-        public WiFiSetup(CommandProcessingService Processor)
+        public WiFiSetup(CommandProcessingService Processor, ModuleConfiguration ModuleConfiguration)
         {
             InitializeComponent();
             _CommandProcessor = Processor;
+            _ModuleConfiguration = ModuleConfiguration;
+        }
+
+        void OnLoad(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("WiFi Settings Page Loaded");
+            if (_ModuleConfiguration._mode == ModuleMode.STATION)
+            {
+                StationItem.Selected -= StationItem_Selected;
+                StationItem.IsSelected = true;
+                StationModeSettingsStackPanel.Visibility = Visibility.Visible;
+                StationItem.Selected += StationItem_Selected;
+            }
+            else if (_ModuleConfiguration._mode == ModuleMode.SOFT_AP)
+            {
+                SoftAPItem.Selected -= SoftAPItem_Selected;
+                SoftAPItem.IsSelected = true;
+                SoftAPModeSettingsStackPanel.Visibility = Visibility.Visible;
+                SoftAPItem.Selected += SoftAPItem_Selected;
+            }
+            else
+            {
+                StationAndSoftAPItem.Selected -= StationItem_Selected;
+                StationAndSoftAPItem.IsSelected = true;
+                StationModeSettingsStackPanel.Visibility = Visibility.Visible;
+                SoftAPModeSettingsStackPanel.Visibility = Visibility.Visible;
+                StationAndSoftAPItem.Selected += StationItem_Selected;
+            }
         }
 
         private void StationItem_Selected(object sender, RoutedEventArgs e)

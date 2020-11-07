@@ -1,4 +1,5 @@
-﻿using SlimWifiConfig.Service;
+﻿using SlimWifiConfig.Model;
+using SlimWifiConfig.Service;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,15 +12,18 @@ namespace SlimWifiConfig.View
     {
         private CommandProcessingService _CommandProcessor;
 
+        private ModuleConfiguration _ModuleConfiguration;
+
         public BasicSetup()
         {
             InitializeComponent();
         }
 
-        public BasicSetup(CommandProcessingService Processor)
+        public BasicSetup(CommandProcessingService Processor, ModuleConfiguration ModuleConfiguration)
         {
             InitializeComponent();
             _CommandProcessor = Processor;
+            _ModuleConfiguration = ModuleConfiguration;
         }
 
         private void TestConnectionButton_Click(object sender, RoutedEventArgs e)

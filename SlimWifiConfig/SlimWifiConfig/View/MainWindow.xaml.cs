@@ -14,8 +14,9 @@ namespace SlimWifiConfig.View
         private readonly Page DataLoggerPage;
         private readonly Page RemoteTerminalPage;
         private readonly Page SettingsPage;
-        private CommandProcessingService CmdProcessor;
         private SerialPort Port;
+        private CommandProcessingService CmdProcessor;
+        private ConfigurationReader CfgReader;
 
         public MainWindow()
         {
@@ -24,10 +25,11 @@ namespace SlimWifiConfig.View
 
             Port = new SerialPort();
             CmdProcessor = new CommandProcessingService(Port);
+            CfgReader = new ConfigurationReader(CmdProcessor);
 
-            SettingsPage = new Settings(Port);
-            BasicSetupPage = new BasicSetup(CmdProcessor);
-            WiFiSetupPage = new WiFiSetup(CmdProcessor);
+            SettingsPage = new Settings(Port, CfgReader);
+            BasicSetupPage = new BasicSetup(CmdProcessor, CfgReader._moduleConfiguration);
+            WiFiSetupPage = new WiFiSetup(CmdProcessor, CfgReader._moduleConfiguration);
             TCPIPSetupPage = new TCPUDPSettings(CmdProcessor);
             DataLoggerPage = new DataLogging();
             RemoteTerminalPage = new RemoteTerminal();

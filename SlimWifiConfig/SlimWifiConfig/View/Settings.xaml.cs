@@ -5,6 +5,7 @@ using System;
 using System.IO.Ports;
 using System.Windows;
 using System.Text;
+using SlimWifiConfig.Service;
 
 namespace SlimWifiConfig.View
 {
@@ -13,12 +14,14 @@ namespace SlimWifiConfig.View
     /// </summary>
     public partial class Settings : Page
     {
-        public SerialPort _SerialPort;
+        private SerialPort _SerialPort;
+        private ConfigurationReader _ConfigurationReader;
 
-        public Settings(SerialPort Port)
+        public Settings(SerialPort Port, ConfigurationReader CfgReader)
         {
             InitializeComponent();
             _SerialPort = Port;
+            _ConfigurationReader = CfgReader;
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -74,6 +77,11 @@ namespace SlimWifiConfig.View
                 catch (Exception) { }
             }
 
+        }
+
+        private void ReadCurrentConfigurationButton_Click(object sender, RoutedEventArgs e)
+        {
+            _ConfigurationReader.GetModuleConfiguration();
         }
     }
 }

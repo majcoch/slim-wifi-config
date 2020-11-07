@@ -12,6 +12,14 @@ namespace SlimWifiConfig.Service
         private static bool _isExecuting;
         private static string _responseBuffer;
 
+        public bool IsExecuting
+        { 
+            get 
+            { 
+                return _isExecuting;
+            }
+        }
+
         private static CancellationTokenSource _source;
 
         public delegate void OnParseSuccessResponseDelegate(string CommandSuccessResponse);
