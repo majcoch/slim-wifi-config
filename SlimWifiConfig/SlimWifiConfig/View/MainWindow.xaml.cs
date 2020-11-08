@@ -2,6 +2,7 @@
 using System.IO.Ports;
 using System.Windows;
 using System.Windows.Controls;
+using SlimWifiConfig.Model;
 using SlimWifiConfig.Service;
 
 namespace SlimWifiConfig.View
@@ -14,23 +15,27 @@ namespace SlimWifiConfig.View
         private readonly Page DataLoggerPage;
         private readonly Page RemoteTerminalPage;
         private readonly Page SettingsPage;
-        private SerialPort Port;
-        private CommandProcessingService CmdProcessor;
-        private ConfigurationReader CfgReader;
+
+        private SerialPort _SerialPort;
+        private CommandProcessingService _CommandProcessor;
+        private ModuleConfiguration _ModuleConfiguration;
+        private ConfigurationReader _ConfigurationReader;
+        private ConfigurationWriter _ConfigurationWriter;
 
         public MainWindow()
         {
-            
             InitializeComponent();
 
-            Port = new SerialPort();
-            CmdProcessor = new CommandProcessingService(Port);
-            CfgReader = new ConfigurationReader(CmdProcessor);
+            _SerialPort = new SerialPort();
+            _ModuleConfiguration = new ModuleConfiguration();
+            _CommandProcessor = new CommandProcessingService(_SerialPort);         
+            _ConfigurationReader = new ConfigurationReader(_CommandProcessor, _ModuleConfiguration);
+            _ConfigurationWriter = new ConfigurationWriter(_CommandProcessor, _ModuleConfiguration);           
 
-            SettingsPage = new Settings(Port, CfgReader);
-            BasicSetupPage = new BasicSetup(CmdProcessor, CfgReader._moduleConfiguration);
-            WiFiSetupPage = new WiFiSetup(CmdProcessor, CfgReader._moduleConfiguration);
-            TCPIPSetupPage = new TCPUDPSettings(CmdProcessor);
+            SettingsPage = new Settings(_SerialPort, _ConfigurationReader, _ConfigurationWriter, _ModuleConfiguration);
+            BasicSetupPage = new BasicSetup(_CommandProcessor, _ModuleConfiguration);
+            WiFiSetupPage = new WiFiSetup(_CommandProcessor, _ModuleConfiguration);
+            TCPIPSetupPage = new TCPUDPSettings(_CommandProcessor, _ModuleConfiguration);
             DataLoggerPage = new DataLogging();
             RemoteTerminalPage = new RemoteTerminal();
 

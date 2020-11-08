@@ -6,57 +6,58 @@
       xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
       xmlns:local="clr-namespace:SlimWifiConfig"
       mc:Ignorable="d" 
-      d:DesignHeight="700"
+      d:DesignHeight="830"
       d:DesignWidth="650"
       Title="Settings">
 
-    <Grid Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <!-- Page header -->
-        <Grid Grid.Row="0"
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <!-- Page header -->
+            <Grid Grid.Row="0"
               Grid.Column="0">
-            <TextBlock VerticalAlignment="Center"
+                <TextBlock VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Margin="20,0,0,0"
                        Text="SETTINGS"
                        Foreground="White"
                        FontSize="20"
                        FontWeight="Bold"/>
-        </Grid>
-        <!-- About this app section -->
-        <Grid Grid.Row="1"
+            </Grid>
+            <!-- About this app section -->
+            <Grid Grid.Row="1"
               Grid.Column="1">
 
-            <StackPanel Orientation="Vertical"
+                <StackPanel Orientation="Vertical"
                         Margin="0,0,30,0">
-                <TextBlock HorizontalAlignment="Left"
+                    <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            FontSize="20"
                            Foreground="White"
                            Text="About this app"/>
-                <TextBlock HorizontalAlignment="Left"
+                    <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Margin="0,5,0,0"
                            FontSize="14"
                            Foreground="White"
                            Text="SlimWiFi Configurator 1.0.0"/>
-                <TextBlock HorizontalAlignment="Left"
+                    <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Margin="0,3,0,0"
                            FontSize="14"
                            Foreground="White"
                            Text="©2020 Michał Granda"/>
 
-                <TextBlock HorizontalAlignment="Left"
+                    <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Margin="0,10,0,0"
                            FontSize="14">
@@ -64,9 +65,9 @@
                                RequestNavigate="Hyperlink_RequestNavigate">
                         Author's GitHub
                     </Hyperlink>
-                </TextBlock>
+                    </TextBlock>
 
-                <TextBlock HorizontalAlignment="Left"
+                    <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Margin="0,5,0,0"
                            FontSize="14">
@@ -74,154 +75,211 @@
                                RequestNavigate="Hyperlink_RequestNavigate">
                         Projects's page
                     </Hyperlink>
-                </TextBlock>
+                    </TextBlock>
 
-            </StackPanel>
-        </Grid>
-
-        <!-- Serial communication section -->
-        <Grid Grid.Row="1"
+                </StackPanel>
+            </Grid>
+            <!-- Serial communication section -->
+            <Grid Grid.Row="1"
               Grid.Column="0"
               Margin="20,0,0,0">
-            <StackPanel Orientation="Vertical">
-                <!-- Section header -->
-                <TextBlock Text="Serial Communication Port"
+                <StackPanel Orientation="Vertical">
+                    <!-- Section header -->
+                    <TextBlock Text="Serial Communication Port"
                            Foreground="White"
                            FontSize="25"/>
 
-                <StackPanel Orientation="Vertical"
+                    <StackPanel Orientation="Vertical"
                             Margin="0,15,0,0">
-                    <TextBlock Text="Serial Port"
+                        <TextBlock Text="Serial Port"
                                Foreground="White"
                                FontSize="13"/>
-                    <ComboBox x:Name="ComPortsComboBox"
+                        <ComboBox x:Name="ComPortsComboBox"
                               HorizontalAlignment="Left"
                               Margin="0,3,0,0"
                               Width="110" 
                               DropDownOpened="ComPortsComboBox_DropDownOpened"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Orientation="Vertical"
+                    <StackPanel Orientation="Vertical"
                             Margin="0,10,0,0">
-                    <TextBlock Text="Frame format"
+                        <TextBlock Text="Frame format"
                                Foreground="White"
                                FontSize="13"/>
-                    <ComboBox x:Name="FrameFormatComboBox"
+                        <ComboBox x:Name="FrameFormatComboBox"
                               HorizontalAlignment="Left"
                               Margin="0,5,0,0"
                               Width="110">
-                        <ComboBoxItem Content="8N1"
+                            <ComboBoxItem Content="8N1"
                                       IsSelected="True"/>
-                        <ComboBoxItem Content="8N2"/>
-                    </ComboBox>
-                </StackPanel>
+                            <ComboBoxItem Content="8N2"/>
+                        </ComboBox>
+                    </StackPanel>
 
-                <StackPanel Orientation="Vertical"
+                    <StackPanel Orientation="Vertical"
                             Margin="0,10,0,0">
-                    <TextBlock Text="Baudrate"
+                        <TextBlock Text="Baudrate"
                                Foreground="White"
                                FontSize="13"/>
-                    <ComboBox x:Name="BaudRatesComboBox"
+                        <ComboBox x:Name="BaudRatesComboBox"
                               HorizontalAlignment="Left"
                               Margin="0,5,0,0"
                               Width="110">
-                        <ComboBoxItem Content="Bootlader"/>
-                        <ComboBoxItem Content="300"/>
-                        <ComboBoxItem Content="600"/>
-                        <ComboBoxItem Content="1200"/>
-                        <ComboBoxItem Content="2400"/>
-                        <ComboBoxItem Content="4800"/>
-                        <ComboBoxItem Content="9600"/>
-                        <ComboBoxItem Content="14400"/>
-                        <ComboBoxItem Content="19200"/>
-                        <ComboBoxItem Content="38400"/>
-                        <ComboBoxItem Content="57600"/>
-                        <ComboBoxItem Content="115200" IsSelected="True"/>
-                        <ComboBoxItem Content="230400"/>
-                        <ComboBoxItem Content="460800"/>
-                    </ComboBox>
+                            <ComboBoxItem Content="Bootlader"/>
+                            <ComboBoxItem Content="300"/>
+                            <ComboBoxItem Content="600"/>
+                            <ComboBoxItem Content="1200"/>
+                            <ComboBoxItem Content="2400"/>
+                            <ComboBoxItem Content="4800"/>
+                            <ComboBoxItem Content="9600"/>
+                            <ComboBoxItem Content="14400"/>
+                            <ComboBoxItem Content="19200"/>
+                            <ComboBoxItem Content="38400"/>
+                            <ComboBoxItem Content="57600"/>
+                            <ComboBoxItem Content="115200" IsSelected="True"/>
+                            <ComboBoxItem Content="230400"/>
+                            <ComboBoxItem Content="460800"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0" >
+                        <Button x:Name="ConnectSerialPortButton"
+                            Content="Connect"
+                            Width="85"
+                            Height="30"
+                            HorizontalAlignment="Left"                         
+                            Click="ConnectSerialPortButton_Click"/>
+                        <TextBlock x:Name="SerialPortErrorTextBlock"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               Foreground="Yellow"
+                               FontSize="13"/>
+                    </StackPanel>
+
                 </StackPanel>
-
-                <Button x:Name="ConnectSerialPortButton"
-                        Content="Connect"
-                        Width="85"
-                        Height="30"
-                        HorizontalAlignment="Left"
-                        Margin="0,10,0,0" 
-                        Click="ConnectSerialPortButton_Click"/>
-
-            </StackPanel>
-        </Grid>
-
-        <!-- Server configuration section -->
-        <Grid Grid.Row="2"
+            </Grid>
+            <!-- Server configuration section -->
+            <Grid Grid.Row="2"
               Grid.Column="0"
-              Margin="20,10,0,0">
-            <StackPanel>
-                <TextBlock Text="Default Server Configuration"
+              Margin="20,10,0,0"
+                  Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Default Server Configuration"
                            Foreground="White"
                            FontSize="25"/>
 
-                <StackPanel Orientation="Vertical"
+                    <StackPanel Orientation="Vertical"
                             Margin="0,15,0,0">
-                    <TextBlock Text="Default AP's address"
+                        <TextBlock Text="Default AP's address"
                                Foreground="White"
                                FontSize="13"/>
-                    <TextBox HorizontalAlignment="Left"
+                        <TextBox HorizontalAlignment="Left"
                              Margin="0,5,0,0"
                              Width="130"
                              Height="20"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Orientation="Vertical"
+                    <StackPanel Orientation="Vertical"
                             Margin="0,10,0,0">
-                    <TextBlock Text="Default port number"
+                        <TextBlock Text="Default port number"
                                Foreground="White"
                                FontSize="13"/>
-                    <TextBox HorizontalAlignment="Left"
+                        <TextBox HorizontalAlignment="Left"
                              Margin="0,5,0,0"
                              Width="130"
                              Height="20"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal"
                             Margin="0,10,0,0">
-                    <Button Width="85"
+                        <Button Width="85"
                             Height="30"
                             Content="Apply"/>
-                    <Button Width="85"
+                        <Button Width="85"
                             Height="30"
                             VerticalAlignment="Bottom"
                             HorizontalAlignment="Left"
                             Margin="15,0,0,0"
                             Content="Restore"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Grid>
-
-
-        <!-- Server configuration section -->
-        <Grid Grid.Row="3"
+            </Grid>
+            <!-- Module configuration section -->
+            <Grid Grid.Row="3"
               Grid.Column="0"
               Margin="20,10,0,0">
-            <StackPanel>
-                <TextBlock Text="Module Configuration"
+                <StackPanel>
+                    <TextBlock Text="Module Configuration"
                            Foreground="White"
                            FontSize="25"/>
-                <StackPanel Orientation="Vertical"
+                    <StackPanel Orientation="Vertical"
                             Margin="0,15,0,0">
-                    <TextBlock Text="Read current configuration"
-                               Foreground="White"
-                               FontSize="13"/>
-                    <Button x:Name="ReadCurrentConfigurationButton"
-                        Content="Read"
-                        Width="85"
-                        Height="30"
-                        HorizontalAlignment="Left"
-                        Margin="0,10,0,0" Click="ReadCurrentConfigurationButton_Click" />
+                        <!-- Read curren configuration from module -->
+                        <StackPanel Orientation="Vertical"
+                                Margin="0,10,0,0">
+                            <TextBlock Text="Read current configuration"
+                                   Foreground="White"
+                                   FontSize="13"/>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,10,0,0">
+                                <Button x:Name="ReadCurrentConfigurationButton"
+                                    Content="Read"
+                                    Width="85"
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    Click="ReadCurrentConfigurationButton_Click" />
+                                <TextBlock x:Name="ReadConfigurationErrorTextBlock"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Foreground="Yellow"
+                                       FontSize="13"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <!-- Save current configuration to file -->
+                        <StackPanel Orientation="Vertical"
+                                    Margin="0,10,0,0">
+                            <TextBlock Text="Save current configuration to file"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,10,0,0">
+                                <Button x:Name="SaveCurrentConfigurationButton"
+                                        Content="Save"
+                                        Width="85"
+                                        Height="30"
+                                        HorizontalAlignment="Left" Click="SaveCurrentConfigurationButton_Click" />
+                                <TextBlock x:Name="SaveConfigurationErrorTextBlock"
+                                           Margin="10,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Foreground="Yellow"
+                                           FontSize="13"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <!-- Load configuration from file -->
+                        <StackPanel Orientation="Vertical"
+                                    Margin="0,10,0,0">
+                            <TextBlock Text="Load configuration from file"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,10,0,10">
+                                <Button x:Name="LoadConfigurationButton"
+                                        Content="Load"
+                                        Width="85"
+                                        Height="30"
+                                        HorizontalAlignment="Left"
+                                        Click="LoadConfigurationButton_Click"/>
+                                <TextBlock x:Name="LoadConfigurationErrorTextBlock"
+                                           Margin="10,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Foreground="Yellow"
+                                           FontSize="13"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Grid>
-
-    </Grid>
+    </ScrollViewer>
 </Page>

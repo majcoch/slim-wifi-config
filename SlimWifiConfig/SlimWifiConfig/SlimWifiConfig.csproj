@@ -58,9 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\AccessPointModeConfiguration.cs" />
     <Compile Include="Model\ModuleConfiguration.cs" />
+    <Compile Include="Model\StationModeConfiguration.cs" />
     <Compile Include="Service\CommandProcessingService.cs" />
     <Compile Include="Service\ConfigurationReader.cs" />
+    <Compile Include="Service\ConfigurationWriter.cs" />
     <Compile Include="View\BasicSetup.xaml.cs">
       <DependentUpon>BasicSetup.xaml</DependentUpon>
     </Compile>
@@ -163,8 +166,6 @@
       <Version>0.9.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

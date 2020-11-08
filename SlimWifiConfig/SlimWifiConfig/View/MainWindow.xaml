@@ -14,7 +14,7 @@
         BorderThickness="0"
         WindowStyle="None"
         Height="700"
-        MinHeight="700"
+        MinHeight="710"
         Width="900"
         MinWidth="900">
     <Window.Resources>

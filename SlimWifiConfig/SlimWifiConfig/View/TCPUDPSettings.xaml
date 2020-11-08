@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="700"
       d:DesignWidth="650"
-      Title="TCPUDPSettings">
+      Title="TCPUDPSettings"
+      Loaded="OnLoad">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Background="Transparent">
@@ -68,14 +69,19 @@
                         <TextBlock Text="Multiple connections"
                                Foreground="White"
                                FontSize="25"/>
-                        <RadioButton Content="Enabled"
-                                     Margin="0,5,0,0"/>
-                        <RadioButton Content="Disabled"
-                                     Margin="0,5,0,0"/>
+                        <RadioButton x:Name="EnableMultipleConnectionsRadioButton"
+                                     Content="Enabled"
+                                     Margin="0,5,0,0" 
+                                     Checked="EnableMultipleConnectionsRadioButton_Checked"/>
+                        <RadioButton x:Name="DisableMultipleConnectionsRadioButton"
+                                     Content="Disabled"
+                                     Margin="0,5,0,0" 
+                                     Checked="DisableMultipleConnectionsRadioButton_Checked"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical"
-                                Margin="0,10,0,0">
+                                Margin="0,10,0,0"
+                                Visibility="Collapsed">
                         <TextBlock Text="TCP server timeout"
                                Foreground="White"
                                FontSize="25"/>

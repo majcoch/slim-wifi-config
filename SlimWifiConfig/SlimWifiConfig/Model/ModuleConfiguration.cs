@@ -2,49 +2,30 @@
 {
     public enum ModuleMode
     {
-        STATION,
-        SOFT_AP,
-        STATION_AND_AP
+        STATION = 1,
+        SOFT_AP = 2,
+        STATION_AND_AP = 3
     }
 
-    public struct ModuleIpConfig
+    public struct IpConfiguration
     {
         public string ip;
         public string gateway;
         public string netmask;
     }
 
-    public struct ModuleDhcpConfig
-    {
-        public string leaseTime;
-        public string startIp;
-        public string endIp;
-    }
-
     public class ModuleConfiguration
     {
-        public ModuleMode _mode;
+        private bool configurationValid;
+        private ModuleMode mode;
+        private bool multipleConnections;
+        private StationModeConfiguration stationConfiguration;
+        private AccessPointModeConfiguration accessPointConfiguration;
 
-        public string _hostName;
-        public string _hostPassword;
-        public bool _accessPointDHCPEnabled;
-        public ModuleDhcpConfig _accessPointDhcpConfig;
-        public ModuleIpConfig _accessPointIpConfig;       
-
-        public string _connectedNetworkName;
-        public bool _stationDHCPEnabled;
-        public ModuleIpConfig _stationIpConfig;
-
-        public ModuleConfiguration()
-        {
-            _hostName = "";
-            _hostPassword = "";
-            _accessPointDHCPEnabled = true;
-            _accessPointDhcpConfig = new ModuleDhcpConfig();
-            _accessPointIpConfig = new ModuleIpConfig();
-            _connectedNetworkName = "";
-            _stationDHCPEnabled = true;
-            _stationIpConfig = new ModuleIpConfig();
-        }
+        public bool ConfigurationValid { get => configurationValid; set => configurationValid = value; }
+        public ModuleMode Mode { get => mode; set => mode = value; }
+        public StationModeConfiguration StationConfiguration { get => stationConfiguration; set => stationConfiguration = value; }
+        public AccessPointModeConfiguration AccessPointConfiguration { get => accessPointConfiguration; set => accessPointConfiguration = value; }
+        public bool MultipleConnections { get => multipleConnections; set => multipleConnections = value; }
     }
 }

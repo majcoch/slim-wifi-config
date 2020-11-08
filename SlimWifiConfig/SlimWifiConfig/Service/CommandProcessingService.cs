@@ -88,10 +88,10 @@ namespace SlimWifiConfig.Service
         public void ExecuteCommand(string Command, int timeout)
         {
             if (!_isExecuting)
-            {
-                _isExecuting = true; // Command execution has started
+            {            
                 _source = new CancellationTokenSource();
                 _serialPort.Write($"{Command}\r\n");
+                _isExecuting = true; // Command execution has started
                 StartCommandTimeout(timeout);
             }
             else
