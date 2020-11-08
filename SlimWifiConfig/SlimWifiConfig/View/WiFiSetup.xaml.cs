@@ -421,9 +421,10 @@ namespace SlimWifiConfig.View
         {
             _CommandProcessor.OnCommandSuccess -= UpdateWiFiConnectionStatus;
             _CommandProcessor.OnParseFailResponse -= UpdateWiFiConnectionError;
-            _ModuleConfiguration.StationConfiguration.ConnectedNetworkName = AvaliableAPsComboBox.Text;
+            
             Dispatcher.Invoke(() =>
             {
+                _ModuleConfiguration.StationConfiguration.ConnectedNetworkName = AvaliableAPsComboBox.Text;
                 ConnectionStatusTextBox.Text = AvaliableAPsComboBox.Text;
                 AvaliableAPsComboBox.IsEnabled = true;
                 WiFiPasswordBox.IsEnabled = true;

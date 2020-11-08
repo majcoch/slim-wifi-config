@@ -165,13 +165,13 @@
               Margin="20,10,0,0"
                   Visibility="Collapsed">
                 <StackPanel>
-                    <TextBlock Text="Default Server Configuration"
+                    <TextBlock Text="Default UDP Server Configuration"
                            Foreground="White"
                            FontSize="25"/>
 
                     <StackPanel Orientation="Vertical"
                             Margin="0,15,0,0">
-                        <TextBlock Text="Default AP's address"
+                        <TextBlock Text="Default module's address"
                                Foreground="White"
                                FontSize="13"/>
                         <TextBox HorizontalAlignment="Left"
@@ -182,7 +182,7 @@
 
                     <StackPanel Orientation="Vertical"
                             Margin="0,10,0,0">
-                        <TextBlock Text="Default port number"
+                        <TextBlock Text="Default module's port number"
                                Foreground="White"
                                FontSize="13"/>
                         <TextBox HorizontalAlignment="Left"
@@ -196,12 +196,6 @@
                         <Button Width="85"
                             Height="30"
                             Content="Apply"/>
-                        <Button Width="85"
-                            Height="30"
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Left"
-                            Margin="15,0,0,0"
-                            Content="Restore"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>

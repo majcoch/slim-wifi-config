@@ -22,36 +22,39 @@
             </Grid.ColumnDefinitions>
             <!-- Page header -->
             <Grid Grid.Row="0"
-              Grid.Column="0">
+                  Grid.Column="0">
                 <TextBlock VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Margin="20,0,0,0"
-                       Text="REMOTE TERMINAL"
-                       Foreground="White"
-                       FontSize="20"
-                       FontWeight="Bold"/>
+                           HorizontalAlignment="Left"
+                           Margin="20,0,0,0"
+                           Text="REMOTE TERMINAL"
+                           Foreground="White"
+                           FontSize="20"
+                           FontWeight="Bold"/>
             </Grid>
             <!-- Remote terminal setup section -->
             <Grid Grid.Row="1"
-              Grid.Column="0"
-              Margin="20,0,0,0">
+                  Grid.Column="0"
+                  Margin="20,0,0,0">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Set up remote terminal"
-                           Foreground="White"
-                           FontSize="25"/>
+                               Foreground="White"
+                               FontSize="25"/>
                     <!-- Server settings -->
-                    <RadioButton x:Name="ServerCheckButton" Content="Server"
-                             Margin="0,10,0,0" Checked="ServerCheckButton_Checked"/>
+                    <RadioButton x:Name="ServerCheckButton"
+                                 Content="Server"
+                                 Margin="0,10,0,0"
+                                 Checked="ServerCheckButton_Checked"/>
                     <StackPanel x:Name="ServerSettingsStackPanel"
-                            Orientation="Vertical"
-                            Visibility="Collapsed">
+                                Orientation="Vertical"
+                                Visibility="Collapsed">
                         <TextBlock Margin="0,10,0,0" 
                                    Text="Server type"
                                    Foreground="White"
                                    FontSize="13"/>
-                        <ComboBox Margin="0,5,0,0"
-                              Width="110"
-                              HorizontalAlignment="Left">
+                        <ComboBox x:Name="ServerTypeComboBox"
+                                  Margin="0,5,0,0"
+                                  Width="110"
+                                  HorizontalAlignment="Left">
                             <ComboBoxItem Content="TCP" IsSelected="True"/>
                             <ComboBoxItem Content="UDP"/>
                         </ComboBox>
@@ -59,59 +62,75 @@
                                    Text="Port"
                                    Foreground="White"
                                    FontSize="13"/>
-                        <TextBox HorizontalAlignment="Left"
-                                     Margin="0,5,0,0"
-                                     Width="150"/>
+                        <TextBox x:Name="ServerPortTextBox"
+                                 HorizontalAlignment="Left"
+                                 Margin="0,5,0,0"
+                                 Width="150"/>
                         <StackPanel Orientation="Horizontal"
-                                Margin="0,10,0,0">
+                                    Margin="0,10,0,0">
                             <TextBlock Text="Server IP:"
-                                   Foreground="White"
-                                   FontSize="13"/>
-                            <TextBlock Margin="10,0,0,0" 
-                                   Text="N/A"
-                                   Foreground="White"
-                                   FontSize="13"/>
+                                       Foreground="White"
+                                       FontSize="13"/>
+                            <TextBlock x:Name="ServerIpTextBlock"
+                                       Margin="10,0,0,0" 
+                                       Text="N/A"
+                                       Foreground="White"
+                                       FontSize="13"/>
                         </StackPanel>
-                        <Button Content="Start"
-                                Margin="0,5,0,0"
-                                Width="85"
-                                Height="30"/>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,5,0,0">
+                            <Button x:Name="StartServerButton"
+                                    Content="Start"
+                                    Width="85"
+                                    Height="30"
+                                    Click="StartServerButton_Click"/>
+                            <TextBlock x:Name="ServerErrorTextBlock"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Foreground="Yellow"
+                                       FontSize="13"/>
+                        </StackPanel>
                     </StackPanel>
                     <!-- Client settings -->
                     <RadioButton x:Name="ClientCheckButton" 
-                             Content="Client"
+                             Content="TCP Client"
                              Margin="0,5,0,0" Checked="ClientCheckButton_Checked"/>
                     <StackPanel x:Name="ClientSettingsStackPanel"
                             Orientation="Vertical"
                             Visibility="Collapsed">
                         <TextBlock Margin="0,10,0,0" 
-                                   Text="Client type"
-                                   Foreground="White"
-                                   FontSize="13"/>
-                        <ComboBox Margin="0,5,0,0"
-                              Width="110"
-                              HorizontalAlignment="Left">
-                            <ComboBoxItem Content="TCP" IsSelected="True"/>
-                            <ComboBoxItem Content="UDP"/>
-                        </ComboBox>
-                        <TextBlock Margin="0,10,0,0" 
                                    Text="Server IP address"
                                    Foreground="White"
                                    FontSize="13"/>
-                        <TextBox HorizontalAlignment="Left"
+                        <TextBox x:Name="ClientIpTextBox"
+                                 HorizontalAlignment="Left"
                                      Margin="0,5,0,0"
                                      Width="150"/>
                         <TextBlock Margin="0,10,0,0" 
                                    Text="Port"
                                    Foreground="White"
                                    FontSize="13"/>
-                        <TextBox HorizontalAlignment="Left"
-                                     Margin="0,5,0,0"
-                                     Width="150"/>
-                        <Button Content="Connect"
-                                Margin="0,5,0,0"
-                                Width="85"
-                                Height="30"/>
+                        <TextBox x:Name="ClientPortTextBox"
+                                 HorizontalAlignment="Left"
+                                 Margin="0,5,0,0"
+                                 Width="150"/>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,5,0,0">
+                            <Button x:Name="ClientConnectButton"
+                                    Content="Connect"
+                                    Width="85"
+                                    Height="30"
+                                    Click="ClientConnectButton_Click"/>
+                            <TextBlock x:Name="ClientErrorTextBlock"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Foreground="Yellow"
+                                       FontSize="13"/>
+                        </StackPanel>
+
+                        
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -123,18 +142,21 @@
                     <TextBlock Text="Console"
                            Foreground="White"
                            FontSize="25"/>
-                    <TextBox Width="500"
-                         Height="300"
+                    <TextBox x:Name="OutputTextBox"
+                             Width="400"
+                         Height="200"
                          IsReadOnly="True"
                          HorizontalAlignment="Left"/>
                     <StackPanel Orientation="Horizontal"
                             Margin=" 0,5,0,0">
-                        <TextBox Width="410"
+                        <TextBox x:Name="InputTextBox"
+                                 Width="310"
                              Height="30"/>
-                        <Button Content="Send"
+                        <Button x:Name="SendButton"
+                                Content="Send"
                             Margin="5,0,0,0"
                             Width="85"
-                            Height="30"/>
+                            Height="30" Click="SendButton_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
