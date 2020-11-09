@@ -18,14 +18,16 @@ namespace SlimWifiConfig.View
         private ModuleConfiguration _ModuleConfiguration;
         private ConfigurationReader _ConfigurationReader;
         private ConfigurationWriter _ConfigurationWriter;
+        private LocalServerConfiguration _ServerConfiguration;
 
-        public Settings(SerialPort Port, ConfigurationReader ConfigurationReader, ConfigurationWriter ConfigurationWriter, ModuleConfiguration ModuleConfiguration)
+        public Settings(SerialPort Port, ConfigurationReader ConfigurationReader, ConfigurationWriter ConfigurationWriter, ModuleConfiguration ModuleConfiguration, LocalServerConfiguration ServerConfiguration)
         {
             InitializeComponent();
             _SerialPort = Port;
             _ModuleConfiguration = ModuleConfiguration;
             _ConfigurationReader = ConfigurationReader;
             _ConfigurationWriter = ConfigurationWriter;
+            _ServerConfiguration = ServerConfiguration;
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -95,6 +97,10 @@ namespace SlimWifiConfig.View
             try
             {
                 _ConfigurationReader.GetModuleConfiguration();
+                if (!_ModuleConfiguration.ConfigurationValid)
+                {
+                    ReadConfigurationErrorTextBlock.Text = "Read invalid";
+                }
             }
             catch (Exception)
             {
@@ -121,10 +127,22 @@ namespace SlimWifiConfig.View
 
         private void SaveCurrentConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(ModuleConfiguration));
-            System.IO.FileStream file = System.IO.File.Create("esp8266.xml");
-            writer.Serialize(file, _ModuleConfiguration);
-            file.Close();
+            if (_ModuleConfiguration.ConfigurationValid)
+            {
+                System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(ModuleConfiguration));
+                System.IO.FileStream file = System.IO.File.Create("esp8266.xml");
+                writer.Serialize(file, _ModuleConfiguration);
+                file.Close();
+            }          
+        }
+
+        private void ApplyDefaultServerConfigurationButton_Click(object sender, RoutedEventArgs e)
+        {
+            string ServerAddress = DefaultServerAddressTextBox.Text;
+            string ServerPort = DefaultServerPortNumberTextBox.Text;
+
+            _ServerConfiguration.LocalAddress = ServerAddress;
+            _ServerConfiguration.LocalPort = ServerPort;
         }
     }
 }

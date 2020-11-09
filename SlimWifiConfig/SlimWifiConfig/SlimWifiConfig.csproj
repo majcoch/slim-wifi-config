@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AccessPointModeConfiguration.cs" />
+    <Compile Include="Model\LocalServerConfiguration.cs" />
     <Compile Include="Model\ModuleConfiguration.cs" />
     <Compile Include="Model\StationModeConfiguration.cs" />
     <Compile Include="Service\CommandProcessingService.cs" />

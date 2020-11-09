@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="700"
       d:DesignWidth="650"
-      Title="RemoteTerminal">
+      Title="RemoteTerminal"
+      Loaded="OnLoad">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
 

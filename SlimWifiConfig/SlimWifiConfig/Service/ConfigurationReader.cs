@@ -8,6 +8,7 @@ namespace SlimWifiConfig.Service
         private ModuleConfiguration _moduleConfiguration;
         private CommandProcessingService _commandProcessingService;
         private bool commandParsed;
+        private bool error;
 
         public ConfigurationReader(CommandProcessingService commandProcessingService, ModuleConfiguration ModuleConfiguration)
         {
@@ -16,9 +17,11 @@ namespace SlimWifiConfig.Service
             commandParsed = false;
         }
 
-        public ModuleConfiguration GetModuleConfiguration()
+        public void GetModuleConfiguration()
         {
-            
+            error = false;
+            _commandProcessingService.OnCommandTimeout += Timeout;
+
             _commandProcessingService.OnParseSuccessResponse += ParseModeSetting;
             commandParsed = false;
             _commandProcessingService.ExecuteCommand("AT+CWMODE?",200);          
@@ -46,8 +49,8 @@ namespace SlimWifiConfig.Service
                 GetAccessPointConfiguration();
             }
 
-            _moduleConfiguration.ConfigurationValid = true;
-            return _moduleConfiguration;
+            _commandProcessingService.OnCommandTimeout -= Timeout;
+            _moduleConfiguration.ConfigurationValid = !error;
         }
 
         /// Mode detection
@@ -130,13 +133,21 @@ namespace SlimWifiConfig.Service
 
         private void ParseStationIpConfig(string response)
         {
-            IpConfiguration ipConfiguration = new IpConfiguration();
-            string[] CommandLines = response.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            ipConfiguration.ip = CommandLines[0].Split(':')[2].Replace("\"", "").Trim();
-            ipConfiguration.gateway = CommandLines[1].Split(':')[2].Replace("\"", "").Trim();
-            ipConfiguration.netmask = CommandLines[2].Split(':')[2].Replace("\"", "").Trim();
-            _moduleConfiguration.StationConfiguration.IpConfig = ipConfiguration;
-            commandParsed = true;
+            try
+            {
+                IpConfiguration ipConfiguration = new IpConfiguration();
+                string[] CommandLines = response.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                ipConfiguration.ip = CommandLines[0].Split(':')[2].Replace("\"", "").Trim();
+                ipConfiguration.gateway = CommandLines[1].Split(':')[2].Replace("\"", "").Trim();
+                ipConfiguration.netmask = CommandLines[2].Split(':')[2].Replace("\"", "").Trim();
+                _moduleConfiguration.StationConfiguration.IpConfig = ipConfiguration;
+                commandParsed = true;
+            }
+            catch (Exception)
+            {
+                commandParsed = true;
+                error = true;
+            }
         }
 
         //// Access Point
@@ -179,6 +190,12 @@ namespace SlimWifiConfig.Service
             _moduleConfiguration.AccessPointConfiguration.DhcpConfig = dhcpConfiguration;
             _moduleConfiguration.AccessPointConfiguration.DhcpSetting = (dhcpConfiguration.leaseTime == "0");
             commandParsed = true;
+        }
+
+        private void Timeout()
+        {
+            commandParsed = true;
+            error = true;
         }
     }
 }

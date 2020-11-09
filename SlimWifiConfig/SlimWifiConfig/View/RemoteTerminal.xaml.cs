@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SlimWifiConfig.Model;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -13,6 +14,8 @@ namespace SlimWifiConfig.View
     /// </summary>
     public partial class RemoteTerminal : Page
     {
+        private LocalServerConfiguration _ServerConfiguration;
+
         private TcpListener _TcpServer;
         NetworkStream _TcpServerStream;
         private bool _TcpServerRunning;
@@ -25,9 +28,15 @@ namespace SlimWifiConfig.View
         private IPEndPoint groupEP;
         private bool _UdpServerRunning;
 
-        public RemoteTerminal()
+        public RemoteTerminal(Model.LocalServerConfiguration ServerConfiguration)
         {
             InitializeComponent();
+            _ServerConfiguration = ServerConfiguration;
+        }
+
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+            ServerPortTextBox.Text = _ServerConfiguration.LocalPort;
         }
 
         private void ServerCheckButton_Checked(object sender, RoutedEventArgs e)
@@ -77,7 +86,7 @@ namespace SlimWifiConfig.View
                     try
                     {
                         int ServerPort = int.Parse(ServerPortTextBox.Text);
-                        _TcpServer = new TcpListener(IPAddress.Parse("192.168.0.15"), ServerPort);
+                        _TcpServer = new TcpListener(IPAddress.Parse(_ServerConfiguration.LocalAddress), ServerPort);
                         _TcpServer.Start();
                         Task.Run(async () =>
                         {
@@ -101,7 +110,7 @@ namespace SlimWifiConfig.View
                     {
                         int ServerPort = int.Parse(ServerPortTextBox.Text);
                         _UdpServer = new UdpClient(ServerPort);
-                        groupEP = new IPEndPoint(IPAddress.Parse("192.168.0.15"), ServerPort);
+                        groupEP = new IPEndPoint(IPAddress.Parse(_ServerConfiguration.LocalAddress), ServerPort);
                         Task.Run(async () =>
                         {
                             UdpServerListener();

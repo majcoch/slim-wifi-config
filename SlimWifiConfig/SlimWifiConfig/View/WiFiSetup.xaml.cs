@@ -303,6 +303,7 @@ namespace SlimWifiConfig.View
         private void UpdateStationPanelExpanded()
         {
             _ModuleConfiguration.Mode = ModuleMode.STATION;
+            _ModuleConfiguration.ConfigurationValid = true;
             _ModuleConfiguration.StationConfiguration = new StationModeConfiguration();
             _ModuleConfiguration.AccessPointConfiguration = null;
 
@@ -317,6 +318,7 @@ namespace SlimWifiConfig.View
         private void UpdateAccessPointPanelExpanded()
         {
             _ModuleConfiguration.Mode = ModuleMode.SOFT_AP;
+            _ModuleConfiguration.ConfigurationValid = true;
             _ModuleConfiguration.StationConfiguration = null;
             _ModuleConfiguration.AccessPointConfiguration = new AccessPointModeConfiguration();
 
@@ -331,6 +333,7 @@ namespace SlimWifiConfig.View
         private void UpdateStationAndccessPointPanelExpanded()
         {
             _ModuleConfiguration.Mode = ModuleMode.STATION_AND_AP;
+            _ModuleConfiguration.ConfigurationValid = true;
             _ModuleConfiguration.StationConfiguration = new StationModeConfiguration();
             _ModuleConfiguration.AccessPointConfiguration = new AccessPointModeConfiguration();
 
@@ -388,7 +391,7 @@ namespace SlimWifiConfig.View
             
             _ModuleConfiguration.StationConfiguration.IpConfig = ipConfig;
         }
-            // Display user error message
+
         private void UpdateStationStaticIpError()
         {
             _CommandProcessor.OnCommandSuccess -= UpdateStationStaticIpSuccess;

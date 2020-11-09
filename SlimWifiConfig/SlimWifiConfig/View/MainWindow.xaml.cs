@@ -21,6 +21,7 @@ namespace SlimWifiConfig.View
         private ModuleConfiguration _ModuleConfiguration;
         private ConfigurationReader _ConfigurationReader;
         private ConfigurationWriter _ConfigurationWriter;
+        private LocalServerConfiguration _ServerConfiguration;
 
         public MainWindow()
         {
@@ -30,14 +31,15 @@ namespace SlimWifiConfig.View
             _ModuleConfiguration = new ModuleConfiguration();
             _CommandProcessor = new CommandProcessingService(_SerialPort);         
             _ConfigurationReader = new ConfigurationReader(_CommandProcessor, _ModuleConfiguration);
-            _ConfigurationWriter = new ConfigurationWriter(_CommandProcessor, _ModuleConfiguration);           
+            _ConfigurationWriter = new ConfigurationWriter(_CommandProcessor, _ModuleConfiguration);
+            _ServerConfiguration = new LocalServerConfiguration();
 
-            SettingsPage = new Settings(_SerialPort, _ConfigurationReader, _ConfigurationWriter, _ModuleConfiguration);
+            SettingsPage = new Settings(_SerialPort, _ConfigurationReader, _ConfigurationWriter, _ModuleConfiguration, _ServerConfiguration);
             BasicSetupPage = new BasicSetup(_CommandProcessor, _ModuleConfiguration);
             WiFiSetupPage = new WiFiSetup(_CommandProcessor, _ModuleConfiguration);
             TCPIPSetupPage = new TCPUDPSettings(_CommandProcessor, _ModuleConfiguration);
             DataLoggerPage = new DataLogging();
-            RemoteTerminalPage = new RemoteTerminal();
+            RemoteTerminalPage = new RemoteTerminal(_ServerConfiguration);
 
             SettingsListViewItem.IsSelected = true;
         }
