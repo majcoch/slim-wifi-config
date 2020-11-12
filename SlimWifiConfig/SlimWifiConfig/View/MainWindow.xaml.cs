@@ -38,7 +38,7 @@ namespace SlimWifiConfig.View
             BasicSetupPage = new BasicSetup(_CommandProcessor, _ModuleConfiguration);
             WiFiSetupPage = new WiFiSetup(_CommandProcessor, _ModuleConfiguration);
             TCPIPSetupPage = new TCPUDPSettings(_CommandProcessor, _ModuleConfiguration);
-            DataLoggerPage = new DataLogging();
+            DataLoggerPage = new DataLogging(_ServerConfiguration);
             RemoteTerminalPage = new RemoteTerminal(_ServerConfiguration);
 
             SettingsListViewItem.IsSelected = true;

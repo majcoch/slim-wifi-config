@@ -121,7 +121,14 @@ namespace SlimWifiConfig.View
                 _ModuleConfiguration.Mode = config.Mode;
                 _ModuleConfiguration.AccessPointConfiguration = config.AccessPointConfiguration;
                 _ModuleConfiguration.StationConfiguration = config.StationConfiguration;
-                _ConfigurationWriter.WriteModuleConfiguration();
+                try
+                {
+                    _ConfigurationWriter.WriteModuleConfiguration();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Serial port not connected");
+                }
             }
         }
 

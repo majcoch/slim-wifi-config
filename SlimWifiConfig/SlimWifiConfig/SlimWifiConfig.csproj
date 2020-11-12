@@ -59,8 +59,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\AccessPointModeConfiguration.cs" />
+    <Compile Include="Model\DataBase\DataLoggerDbContext.cs" />
     <Compile Include="Model\LocalServerConfiguration.cs" />
     <Compile Include="Model\ModuleConfiguration.cs" />
+    <Compile Include="Model\DataBase\Record.cs" />
     <Compile Include="Model\StationModeConfiguration.cs" />
     <Compile Include="Service\CommandProcessingService.cs" />
     <Compile Include="Service\ConfigurationReader.cs" />
@@ -160,6 +162,9 @@
     <Resource Include="Assets\WiFiSetupPageIcon.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
     <PackageReference Include="FluentWPF">
       <Version>0.8.0</Version>
     </PackageReference>

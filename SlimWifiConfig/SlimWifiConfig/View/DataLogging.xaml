@@ -7,12 +7,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="700"
       d:DesignWidth="650"
-      Title="DataLogging">
+      Title="DataLogging"
+      Loaded="Page_Loaded">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -33,24 +35,70 @@
             <Grid Grid.Row="1"
                   Grid.Column="0"
                   Margin="20,0,0,0">
-                <StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="0,0,0,10">
                     <TextBlock Text="Data logger server"
                                Foreground="White"
                                FontSize="25"/>
-                    <Button Content="Start"
+
+                    <StackPanel x:Name="ServerInformationStackPanel"
+                                Orientation="Vertical"
+                                Margin="0,5,0,10"
+                                Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Server IP:"
+                                       Foreground="White"
+                                       FontSize="13"
+                                       Margin="0,0,10,0"/>
+                            <TextBlock x:Name="ServerIpTextBox"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,5,0,0">
+                            <TextBlock Text="Server port:"
+                                       Foreground="White"
+                                       FontSize="13"
+                                       Margin="0,0,10,0"/>
+                            <TextBlock x:Name="ServerPortTextBox"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Button x:Name="StartUdpServerButton"
+                        Content="Start"
                         Width="85"
                         Height="30"
-                        Margin="0,5,0,0"/>
+                        Margin="0,5,0,0" Click="StartUdpServerButton_Click"/>
+                    
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="2"
                   Grid.Column="0"
                   Margin="20,0,0,0">
-                <DataGrid Width="400"
-                          Height="500"
-                          HorizontalAlignment="Left">
+                <DataGrid x:Name="RecordsDataGrid"
+                          CanUserAddRows="false"
+                          IsReadOnly="True"
+                          Width="400"
+                          Height="420"
+                          HorizontalAlignment="Left"
+                          >
                 </DataGrid>
             </Grid>
+
+            <Grid Grid.Row="3"
+                  Grid.Column="0"
+                  Margin="20,0,0,0">
+                <Button x:Name="ClearRecordsButton"
+                        Content="Clear"
+                        Width="85"
+                        Height="30"
+                        Margin="0,5,0,0" Click="ClearRecordsButton_Click" />
+            </Grid>
+            
+            
         </Grid>
     </ScrollViewer>
 </Page>

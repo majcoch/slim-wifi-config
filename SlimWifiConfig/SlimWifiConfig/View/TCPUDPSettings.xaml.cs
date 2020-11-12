@@ -65,14 +65,30 @@ namespace SlimWifiConfig.View
 
         private void EnableMultipleConnectionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            _CommandProcessor.ExecuteCommand($"AT+CIPMUX=1", 100);
-            _CommandProcessor.OnCommandSuccess += UpdateEnableMultipleConnectionSuccess;
+            try
+            {
+                _CommandProcessor.ExecuteCommand($"AT+CIPMUX=1", 100);
+                _CommandProcessor.OnCommandSuccess += UpdateEnableMultipleConnectionSuccess;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Serial port not connected");
+                EnableMultipleConnectionsRadioButton.IsChecked = false;
+            }
         }
 
         private void DisableMultipleConnectionsRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            _CommandProcessor.ExecuteCommand($"AT+CIPMUX=0", 100);
-            _CommandProcessor.OnCommandSuccess += UpdateDisableMultipleConnectionSuccess;
+            try
+            {
+                _CommandProcessor.ExecuteCommand($"AT+CIPMUX=0", 100);
+                _CommandProcessor.OnCommandSuccess += UpdateDisableMultipleConnectionSuccess;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Serial port not connected");
+                DisableMultipleConnectionsRadioButton.IsChecked = false;
+            }
         }
 
         private void UpdatePingInformation(string CommandResponse)
